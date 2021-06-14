@@ -1,0 +1,516 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^Method Application\\\\Authentication\\\\Adapter\\\\ChainingAdapterInterface\\:\\:setCredential\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: module/Application/src/Application/Authentication/Adapter/ChainingAdapterInterface.php
+
+		-
+			message: "#^Method Application\\\\Authentication\\\\Adapter\\\\ChainingAdapterInterface\\:\\:setCredential\\(\\) has parameter \\$credential with no typehint specified\\.$#"
+			count: 1
+			path: module/Application/src/Application/Authentication/Adapter/ChainingAdapterInterface.php
+
+		-
+			message: "#^Method Application\\\\Authentication\\\\Adapter\\\\ChainingAdapterInterface\\:\\:setIdentity\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: module/Application/src/Application/Authentication/Adapter/ChainingAdapterInterface.php
+
+		-
+			message: "#^Method Application\\\\Authentication\\\\Adapter\\\\ChainingAdapterInterface\\:\\:setIdentity\\(\\) has parameter \\$identity with no typehint specified\\.$#"
+			count: 1
+			path: module/Application/src/Application/Authentication/Adapter/ChainingAdapterInterface.php
+
+		-
+			message: "#^Property Application\\\\Authentication\\\\Adapter\\\\EnsureUser\\:\\:\\$wrapped has no typehint specified\\.$#"
+			count: 1
+			path: module/Application/src/Application/Authentication/Adapter/EnsureUser.php
+
+		-
+			message: "#^Method Application\\\\Authentication\\\\Adapter\\\\EnsureUser\\:\\:setIdentity\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: module/Application/src/Application/Authentication/Adapter/EnsureUser.php
+
+		-
+			message: "#^Method Application\\\\Authentication\\\\Adapter\\\\EnsureUser\\:\\:setIdentity\\(\\) has parameter \\$identity with no typehint specified\\.$#"
+			count: 1
+			path: module/Application/src/Application/Authentication/Adapter/EnsureUser.php
+
+		-
+			message: "#^Method Application\\\\Authentication\\\\Adapter\\\\EnsureUser\\:\\:setCredential\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: module/Application/src/Application/Authentication/Adapter/EnsureUser.php
+
+		-
+			message: "#^Method Application\\\\Authentication\\\\Adapter\\\\EnsureUser\\:\\:setCredential\\(\\) has parameter \\$credential with no typehint specified\\.$#"
+			count: 1
+			path: module/Application/src/Application/Authentication/Adapter/EnsureUser.php
+
+		-
+			message: "#^Method Application\\\\Authentication\\\\Adapter\\\\LockedUser\\:\\:setIdentity\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: module/Application/src/Application/Authentication/Adapter/LockedUser.php
+
+		-
+			message: "#^Method Application\\\\Authentication\\\\Adapter\\\\LockedUser\\:\\:setIdentity\\(\\) has parameter \\$identity with no typehint specified\\.$#"
+			count: 1
+			path: module/Application/src/Application/Authentication/Adapter/LockedUser.php
+
+		-
+			message: "#^Method Application\\\\Authentication\\\\Adapter\\\\LockedUser\\:\\:setCredential\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: module/Application/src/Application/Authentication/Adapter/LockedUser.php
+
+		-
+			message: "#^Method Application\\\\Authentication\\\\Adapter\\\\LockedUser\\:\\:setCredential\\(\\) has parameter \\$credential with no typehint specified\\.$#"
+			count: 1
+			path: module/Application/src/Application/Authentication/Adapter/LockedUser.php
+
+		-
+			message: "#^Property Application\\\\Authentication\\\\Storage\\\\DoctrineUserAccount\\:\\:\\$userCache has no typehint specified\\.$#"
+			count: 1
+			path: module/Application/src/Application/Authentication/Storage/DoctrineUserAccount.php
+
+		-
+			message: "#^Method Application\\\\ContentNegotiation\\\\XmlContentTypeListener\\:\\:__invoke\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: module/Application/src/Application/ContentNegotiation/XmlContentTypeListener.php
+
+		-
+			message: "#^Method Application\\\\ContentNegotiation\\\\XmlContentTypeListener\\:\\:isXmlRequest\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: module/Application/src/Application/ContentNegotiation/XmlContentTypeListener.php
+
+		-
+			message: "#^Method Application\\\\ContentNegotiation\\\\XmlContentTypeListener\\:\\:isXmlRequest\\(\\) has parameter \\$request with no typehint specified\\.$#"
+			count: 1
+			path: module/Application/src/Application/ContentNegotiation/XmlContentTypeListener.php
+
+		-
+			message: "#^Method Application\\\\ContentNegotiation\\\\XmlContentTypeListener\\:\\:extractBodyParametersFromXml\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: module/Application/src/Application/ContentNegotiation/XmlContentTypeListener.php
+
+		-
+			message: "#^Method Application\\\\ContentNegotiation\\\\XmlContentTypeListener\\:\\:extractBodyParametersFromXml\\(\\) has parameter \\$xmlString with no typehint specified\\.$#"
+			count: 1
+			path: module/Application/src/Application/ContentNegotiation/XmlContentTypeListener.php
+
+		-
+			message: "#^Parameter \\#1 \\$json of function json_decode expects string, string\\|false given\\.$#"
+			count: 1
+			path: module/Application/src/Application/ContentNegotiation/XmlContentTypeListener.php
+
+		-
+			message: "#^Method Application\\\\Controller\\\\AuthController\\:\\:indexAction\\(\\) return type has no value type specified in iterable type Laminas\\\\View\\\\Model\\\\ViewModel\\.$#"
+			count: 1
+			path: module/Application/src/Application/Controller/AuthController.php
+
+		-
+			message: "#^Method Application\\\\Controller\\\\AuthController\\:\\:indexAction\\(\\) should return Laminas\\\\View\\\\Model\\\\ViewModel but returns Laminas\\\\Http\\\\Response\\.$#"
+			count: 3
+			path: module/Application/src/Application/Controller/AuthController.php
+
+		-
+			message: "#^Method Application\\\\Controller\\\\AuthController\\:\\:indexAction\\(\\) should return Laminas\\\\View\\\\Model\\\\ViewModel but return statement is missing\\.$#"
+			count: 1
+			path: module/Application/src/Application/Controller/AuthController.php
+
+		-
+			message: "#^Method Application\\\\Controller\\\\HealthCheckController\\:\\:__construct\\(\\) has parameter \\$config with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: module/Application/src/Application/Controller/HealthCheckController.php
+
+		-
+			message: "#^Method Application\\\\Controller\\\\HealthCheckController\\:\\:migrationVersionAction\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: module/Application/src/Application/Controller/HealthCheckController.php
+
+		-
+			message: "#^Method Application\\\\Controller\\\\NotImplementedController\\:\\:indexAction\\(\\) return type has no value type specified in iterable type Laminas\\\\View\\\\Model\\\\ViewModel\\.$#"
+			count: 1
+			path: module/Application/src/Application/Controller/NotImplementedController.php
+
+		-
+			message: "#^Method Application\\\\Controller\\\\NotImplementedController\\:\\:indexAction\\(\\) should return Laminas\\\\View\\\\Model\\\\ViewModel but returns Laminas\\\\Http\\\\Response\\.$#"
+			count: 1
+			path: module/Application/src/Application/Controller/NotImplementedController.php
+
+		-
+			message: "#^PHPDoc tag @var for variable \\$user has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: module/Application/src/Application/Controller/SessionRestController.php
+
+		-
+			message: "#^Method Application\\\\Controller\\\\UserRestController\\:\\:currentlyLoggedInUserIsUpdatingTheirProfile\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: module/Application/src/Application/Controller/UserRestController.php
+
+		-
+			message: "#^Method Application\\\\Controller\\\\UserRestController\\:\\:currentlyLoggedInUserIsUpdatingTheirProfile\\(\\) has parameter \\$id with no typehint specified\\.$#"
+			count: 1
+			path: module/Application/src/Application/Controller/UserRestController.php
+
+		-
+			message: "#^Method Application\\\\Controller\\\\UserRestController\\:\\:currentlyLoggedInUserIsUpdatingTheirProfile\\(\\) has parameter \\$userAccount with no typehint specified\\.$#"
+			count: 1
+			path: module/Application/src/Application/Controller/UserRestController.php
+
+		-
+			message: "#^Property Application\\\\Controller\\\\UserStatusController\\:\\:\\$userService has no typehint specified\\.$#"
+			count: 1
+			path: module/Application/src/Application/Controller/UserStatusController.php
+
+		-
+			message: "#^PHPDoc tag @var for variable \\$user has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: module/Application/src/Application/Controller/V1/SessionRestController.php
+
+		-
+			message: "#^Method Application\\\\Fixtures\\\\LoadUsers\\:\\:load\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: module/Application/src/Application/Fixtures/LoadUsers.php
+
+		-
+			message: "#^Parameter \\#1 \\$password of method Application\\\\Model\\\\Entity\\\\UserAccount\\:\\:setPassword\\(\\) expects string, string\\|false given\\.$#"
+			count: 1
+			path: module/Application/src/Application/Fixtures/LoadUsers.php
+
+		-
+			message: "#^Method Application\\\\Model\\\\Entity\\\\UserAccount\\:\\:__debugInfo\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: module/Application/src/Application/Model/Entity/UserAccount.php
+
+		-
+			message: "#^Method Application\\\\Model\\\\Entity\\\\UserAccount\\:\\:clearPassword\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: module/Application/src/Application/Model/Entity/UserAccount.php
+
+		-
+			message: "#^Property Application\\\\Model\\\\Entity\\\\UserAccount\\:\\:\\$password \\(string\\) does not accept null\\.$#"
+			count: 1
+			path: module/Application/src/Application/Model/Entity/UserAccount.php
+
+		-
+			message: "#^Method Application\\\\Model\\\\Entity\\\\UserAccount\\:\\:setCreatedAtValue\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: module/Application/src/Application/Model/Entity/UserAccount.php
+
+		-
+			message: "#^Method Application\\\\Model\\\\Entity\\\\UserAccount\\:\\:setUpdatedAtValue\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: module/Application/src/Application/Model/Entity/UserAccount.php
+
+		-
+			message: "#^Method Application\\\\Model\\\\Entity\\\\UserAccount\\:\\:clearOneTimePasswordSetToken\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: module/Application/src/Application/Model/Entity/UserAccount.php
+
+		-
+			message: "#^Method Application\\\\Model\\\\Entity\\\\UserAccount\\:\\:isLocked\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: module/Application/src/Application/Model/Entity/UserAccount.php
+
+		-
+			message: "#^Property Application\\\\Proxy\\\\ApplicationProxy\\:\\:\\$config type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: module/Application/src/Application/Proxy/ApplicationProxy.php
+
+		-
+			message: "#^Method Application\\\\Proxy\\\\ApplicationProxy\\:\\:__construct\\(\\) has parameter \\$config with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: module/Application/src/Application/Proxy/ApplicationProxy.php
+
+		-
+			message: "#^Method Application\\\\Proxy\\\\ApplicationProxy\\:\\:createForwardRequestFromRequest\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: module/Application/src/Application/Proxy/ApplicationProxy.php
+
+		-
+			message: "#^Method Application\\\\Proxy\\\\ApplicationProxy\\:\\:createForwardRequestFromRequest\\(\\) has parameter \\$request with no typehint specified\\.$#"
+			count: 1
+			path: module/Application/src/Application/Proxy/ApplicationProxy.php
+
+		-
+			message: "#^Method Application\\\\Proxy\\\\ApplicationProxy\\:\\:buildForwardUri\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: module/Application/src/Application/Proxy/ApplicationProxy.php
+
+		-
+			message: "#^Method Application\\\\Proxy\\\\ApplicationProxy\\:\\:buildForwardUri\\(\\) has parameter \\$request with no typehint specified\\.$#"
+			count: 1
+			path: module/Application/src/Application/Proxy/ApplicationProxy.php
+
+		-
+			message: "#^Method Application\\\\Proxy\\\\ApplicationProxy\\:\\:copyRequestParameters\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: module/Application/src/Application/Proxy/ApplicationProxy.php
+
+		-
+			message: "#^Method Application\\\\Proxy\\\\ApplicationProxy\\:\\:copyRequestParameters\\(\\) has parameter \\$forwardRequest with no typehint specified\\.$#"
+			count: 1
+			path: module/Application/src/Application/Proxy/ApplicationProxy.php
+
+		-
+			message: "#^Method Application\\\\Proxy\\\\ApplicationProxy\\:\\:copyRequestParameters\\(\\) has parameter \\$request with no typehint specified\\.$#"
+			count: 1
+			path: module/Application/src/Application/Proxy/ApplicationProxy.php
+
+		-
+			message: "#^Method Application\\\\Proxy\\\\ApplicationProxy\\:\\:copyHeaders\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: module/Application/src/Application/Proxy/ApplicationProxy.php
+
+		-
+			message: "#^Method Application\\\\Proxy\\\\ApplicationProxy\\:\\:resolveForwardMethod\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: module/Application/src/Application/Proxy/ApplicationProxy.php
+
+		-
+			message: "#^Method Application\\\\Proxy\\\\ApplicationProxy\\:\\:resolveForwardMethod\\(\\) has parameter \\$request with no typehint specified\\.$#"
+			count: 1
+			path: module/Application/src/Application/Proxy/ApplicationProxy.php
+
+		-
+			message: "#^Method Application\\\\Proxy\\\\ApplicationProxy\\:\\:copyHeader\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: module/Application/src/Application/Proxy/ApplicationProxy.php
+
+		-
+			message: "#^Parameter \\#3 \\$encoding of function mb_convert_case expects string|null, string\\|false given\\.$#"
+			count: 1
+			path: module/Application/src/Application/Service/AbstractService.php
+
+		-
+			message: "#^Method Application\\\\Service\\\\RequestService\\:\\:updateHeadersWithUserId\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: module/Application/src/Application/Service/RequestService.php
+
+		-
+			message: "#^Method Application\\\\Service\\\\ServiceStatusService\\:\\:__construct\\(\\) has parameter \\$config with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: module/Application/src/Application/Service/ServiceStatusService.php
+
+		-
+			message: "#^Method Application\\\\Service\\\\ServiceStatusService\\:\\:check\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: module/Application/src/Application/Service/ServiceStatusService.php
+
+		-
+			message: "#^Method Application\\\\Service\\\\UserCreationService\\:\\:createUser\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: module/Application/src/Application/Service/UserCreationService.php
+
+		-
+			message: "#^Method Application\\\\Service\\\\UserCreationService\\:\\:createUser\\(\\) has parameter \\$email with no typehint specified\\.$#"
+			count: 1
+			path: module/Application/src/Application/Service/UserCreationService.php
+
+		-
+			message: "#^Method Application\\\\Service\\\\UserCreationService\\:\\:createUser\\(\\) has parameter \\$isAdmin with no typehint specified\\.$#"
+			count: 1
+			path: module/Application/src/Application/Service/UserCreationService.php
+
+		-
+			message: "#^Method Application\\\\Service\\\\UserCreationService\\:\\:createUser\\(\\) has parameter \\$password with no typehint specified\\.$#"
+			count: 1
+			path: module/Application/src/Application/Service/UserCreationService.php
+
+		-
+			message: "#^Method Application\\\\Service\\\\UserCreationService\\:\\:resendActivationEmail\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: module/Application/src/Application/Service/UserCreationService.php
+
+		-
+			message: "#^Method Application\\\\Service\\\\UserCreationService\\:\\:resendActivationEmail\\(\\) has parameter \\$id with no typehint specified\\.$#"
+			count: 1
+			path: module/Application/src/Application/Service/UserCreationService.php
+
+		-
+			message: "#^Property Application\\\\Service\\\\UserEmailService\\:\\:\\$userServiceConfig type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: module/Application/src/Application/Service/UserEmailService.php
+
+		-
+			message: "#^Method Application\\\\Service\\\\UserEmailService\\:\\:sendActivationEmail\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: module/Application/src/Application/Service/UserEmailService.php
+
+		-
+			message: "#^Method Application\\\\Service\\\\UserEmailService\\:\\:sendPasswordResetEmail\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: module/Application/src/Application/Service/UserEmailService.php
+
+		-
+			message: "#^Method Application\\\\Service\\\\UserPasswordResetService\\:\\:sendPasswordResetViaEmail\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: module/Application/src/Application/Service/UserPasswordResetService.php
+
+		-
+			message: "#^Method Application\\\\Service\\\\UserPasswordResetService\\:\\:sendPasswordResetViaEmail\\(\\) has parameter \\$userID with no typehint specified\\.$#"
+			count: 1
+			path: module/Application/src/Application/Service/UserPasswordResetService.php
+
+		-
+			message: "#^Else branch is unreachable because previous condition is always true\\.$#"
+			count: 1
+			path: module/Application/src/Application/Service/UserPasswordResetService.php
+
+		-
+			message: "#^Method Application\\\\Service\\\\UserService\\:\\:getUsers\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: module/Application/src/Application/Service/UserService.php
+
+		-
+			message: "#^Method Application\\\\Service\\\\UserService\\:\\:getUsers\\(\\) has parameter \\$parameters with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: module/Application/src/Application/Service/UserService.php
+
+		-
+			message: "#^Method Application\\\\Service\\\\UserService\\:\\:verifyPasswordComplexity\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: module/Application/src/Application/Service/UserService.php
+
+		-
+			message: "#^Method Application\\\\Service\\\\UserService\\:\\:verifyPasswordComplexity\\(\\) has parameter \\$proposedPassword with no typehint specified\\.$#"
+			count: 1
+			path: module/Application/src/Application/Service/UserService.php
+
+		-
+			message: "#^Method Application\\\\Service\\\\UserService\\:\\:setPasswordForUserViaOneTimeToken\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: module/Application/src/Application/Service/UserService.php
+
+		-
+			message: "#^Method Application\\\\Service\\\\UserService\\:\\:setPasswordForUserViaOneTimeToken\\(\\) has parameter \\$oneTimePasswordSetToken with no typehint specified\\.$#"
+			count: 1
+			path: module/Application/src/Application/Service/UserService.php
+
+		-
+			message: "#^Method Application\\\\Service\\\\UserService\\:\\:setPasswordForUserViaOneTimeToken\\(\\) has parameter \\$password with no typehint specified\\.$#"
+			count: 1
+			path: module/Application/src/Application/Service/UserService.php
+
+		-
+			message: "#^Method Application\\\\Service\\\\UserService\\:\\:setPasswordForUserViaOneTimeToken\\(\\) has parameter \\$uid with no typehint specified\\.$#"
+			count: 1
+			path: module/Application/src/Application/Service/UserService.php
+
+		-
+			message: "#^Method Application\\\\Service\\\\UserService\\:\\:setPasswordForUserViaExistingPassword\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: module/Application/src/Application/Service/UserService.php
+
+		-
+			message: "#^Method Application\\\\Service\\\\UserService\\:\\:setPasswordForUserViaExistingPassword\\(\\) has parameter \\$existingPassword with no typehint specified\\.$#"
+			count: 1
+			path: module/Application/src/Application/Service/UserService.php
+
+		-
+			message: "#^Method Application\\\\Service\\\\UserService\\:\\:setPasswordForUserViaExistingPassword\\(\\) has parameter \\$newPassword with no typehint specified\\.$#"
+			count: 1
+			path: module/Application/src/Application/Service/UserService.php
+
+		-
+			message: "#^Method Application\\\\Service\\\\UserService\\:\\:formatUsers\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: module/Application/src/Application/Service/UserService.php
+
+		-
+			message: "#^Method Application\\\\Service\\\\UserService\\:\\:formatUsers\\(\\) has parameter \\$users with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: module/Application/src/Application/Service/UserService.php
+
+		-
+			message: "#^Method Application\\\\Service\\\\UserService\\:\\:retrieveUserAccountEntity\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: module/Application/src/Application/Service/UserService.php
+
+		-
+			message: "#^Method Application\\\\Service\\\\UserService\\:\\:retrieveUserAccountEntity\\(\\) has parameter \\$id with no typehint specified\\.$#"
+			count: 1
+			path: module/Application/src/Application/Service/UserService.php
+
+		-
+			message: "#^Property Application\\\\Service\\\\UserSessionService\\:\\:\\$entityManager \\(Doctrine\\\\ORM\\\\EntityManager\\) does not accept Doctrine\\\\ORM\\\\EntityManagerInterface\\.$#"
+			count: 1
+			path: module/Application/src/Application/Service/UserSessionService.php
+
+		-
+			message: "#^Method Application\\\\Service\\\\UserSessionService\\:\\:openUserSession\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: module/Application/src/Application/Service/UserSessionService.php
+
+		-
+			message: "#^Method Application\\\\Service\\\\UserUpdateService\\:\\:updateUser\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: module/Application/src/Application/Service/UserUpdateService.php
+
+		-
+			message: "#^Method Application\\\\Service\\\\UserUpdateService\\:\\:updateUser\\(\\) has parameter \\$newValues with no typehint specified\\.$#"
+			count: 1
+			path: module/Application/src/Application/Service/UserUpdateService.php
+
+		-
+			message: "#^Method Application\\\\Service\\\\UserUpdateService\\:\\:updateUser\\(\\) has parameter \\$userId with no typehint specified\\.$#"
+			count: 1
+			path: module/Application/src/Application/Service/UserUpdateService.php
+
+		-
+			message: "#^Method Application\\\\View\\\\Model\\\\XmlModel\\:\\:arrayToXml\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: module/Application/src/Application/View/Model/XmlModel.php
+
+		-
+			message: "#^Method Application\\\\View\\\\Model\\\\XmlModel\\:\\:arrayToXml\\(\\) has parameter \\$array with no typehint specified\\.$#"
+			count: 1
+			path: module/Application/src/Application/View/Model/XmlModel.php
+
+		-
+			message: "#^Method Application\\\\View\\\\Model\\\\XmlModel\\:\\:makeElement\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: module/Application/src/Application/View/Model/XmlModel.php
+
+		-
+			message: "#^Method Application\\\\View\\\\Model\\\\XmlModel\\:\\:makeElement\\(\\) has parameter \\$element with no typehint specified\\.$#"
+			count: 1
+			path: module/Application/src/Application/View/Model/XmlModel.php
+
+		-
+			message: "#^Method Application\\\\View\\\\Model\\\\XmlModel\\:\\:makeElement\\(\\) has parameter \\$value with no typehint specified\\.$#"
+			count: 1
+			path: module/Application/src/Application/View/Model/XmlModel.php
+
+		-
+			message: "#^Method Application\\\\View\\\\Model\\\\XmlModel\\:\\:wrapXmlInResponse\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: module/Application/src/Application/View/Model/XmlModel.php
+
+		-
+			message: "#^Method Application\\\\View\\\\Model\\\\XmlModel\\:\\:wrapXmlInResponse\\(\\) has parameter \\$xmlData with no typehint specified\\.$#"
+			count: 1
+			path: module/Application/src/Application/View/Model/XmlModel.php
+
+		-
+			message: "#^Property Application\\\\View\\\\Renderer\\\\XmlRenderer\\:\\:\\$resolver has no typehint specified\\.$#"
+			count: 1
+			path: module/Application/src/Application/View/Renderer/XmlRenderer.php
+
+		-
+			message: "#^Property Application\\\\View\\\\Strategy\\\\XmlStrategy\\:\\:\\$multibyteCharsets type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: module/Application/src/Application/View/Strategy/XmlStrategy.php
+
+		-
+			message: "#^Property Application\\\\View\\\\Strategy\\\\XmlStrategy\\:\\:\\$renderer has no typehint specified\\.$#"
+			count: 1
+			path: module/Application/src/Application/View/Strategy/XmlStrategy.php
+
+		-
+			message: "#^Method Application\\\\View\\\\Strategy\\\\XmlStrategy\\:\\:selectRenderer\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: module/Application/src/Application/View/Strategy/XmlStrategy.php
+
+		-
+			message: "#^Method Application\\\\View\\\\Strategy\\\\XmlStrategy\\:\\:injectResponse\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: module/Application/src/Application/View/Strategy/XmlStrategy.php
