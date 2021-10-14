@@ -1,0 +1,30 @@
+{
+  "db-version": {
+    "back-end-db-migration-version": "0"
+  },
+  "healthcheck": {
+    "ok": true,
+    "ddc-queue": {
+      "ok": true,
+      "queue-type": "sqs",
+      "attributes": {
+        "ApproximateNumberOfMessages": "0",
+        "ApproximateNumberOfMessagesDelayed": "0",
+        "ApproximateNumberOfMessagesNotVisible": "0",
+        "CreatedTimestamp": "1634134980.147351",
+        "DelaySeconds": "0",
+        "LastModifiedTimestamp": "1634134980.147351",
+        "MaximumMessageSize": "262144",
+        "MessageRetentionPeriod": "345600",
+        "QueueArn": "arn:aws:sqs:eu-west-1:000000000000:ddc.fifo",
+        "ReceiveMessageWaitTimeSeconds": "0",
+        "VisibilityTimeout": "30",
+        "FifoQueue": "true",
+        "ContentBasedDeduplication": "true"
+      }
+    }
+  },
+  "user": {
+    "email": "manager@opgtest.com"
+  }
+}
