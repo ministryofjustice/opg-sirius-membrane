@@ -1,0 +1,152 @@
+name: Build
+
+on:
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+defaults:
+ run:
+  shell: bash
+
+jobs:
+  build:
+    name: Lint, Build, Test
+    runs-on: ubuntu-latest
+    outputs:
+      tag: ${{ steps.bump_version.outputs.tag }}
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Lint Code
+        run: |
+          make lint
+
+      - name: Build Container
+        run: |
+          make build
+
+      - name: Trivy Image Vulnerability Scanner
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: membrane-app:latest
+          severity: 'HIGH,CRITICAL'
+          format: 'template'
+          template: '@/contrib/sarif.tpl'
+          output: 'trivy-results.sarif'
+
+      - name: Upload Trivy scan results to GitHub Security tab
+        uses: github/codeql-action/upload-sarif@v1
+        if: always()
+        with:
+          sarif_file: 'trivy-results.sarif'
+
+      - name: Install Inspec for Image Tests
+        uses: actionshub/chef-install@main
+        if: always()
+        with:
+          channel: current
+          project: inspec
+
+      - name: Run Inspec Tests
+        env:
+          CHEF_LICENSE: accept
+        run: |
+          make inspec
+          make cleanup
+
+      - name: Publish Inspec Test Results
+        uses: EnricoMi/publish-unit-test-result-action@v1
+        if: always()
+        with:
+          check_name: "Inspec Test Results"
+          files: test-output/inspec.xml
+
+      - name: Unit Test & Coverage
+        run: |
+          make unit-coverage
+
+      - name: Publish Unit Test Results
+        uses: EnricoMi/publish-unit-test-result-action@v1
+        if: always()
+        with:
+          check_name: "PHP Unit Test Results"
+          files: test-output/unit.xml
+
+      - name: Publish Report
+        uses: danhunsaker/clover-reporter-action@v0.2.17-clover
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          clover-file: "test-output/clover.xml"
+
+      - name: Check & Publish Report
+        uses: johanvanhelden/gha-clover-test-coverage-check@v1
+        with:
+          percentage: "45"
+          filename: "test-output/clover.xml"
+
+      - name: Functional Test
+        run: |
+          make functional
+
+      - name: Publish Functional Test Results
+        uses: EnricoMi/publish-unit-test-result-action@v1
+        if: always()
+        with:
+          check_name: "PHP Functional Test Results"
+          files: test-output/functional.xml
+          
+      - name: Extract branch name
+        run: |
+          if [ "${{ github.head_ref }}" == "" ]; then
+            echo BRANCH_NAME=main >> $GITHUB_ENV
+          else
+            echo BRANCH_NAME=${{ github.head_ref }} >> $GITHUB_ENV
+          fi
+        id: extract_branch
+
+      - name: Bump version
+        id: bump_version
+        uses: anothrNick/github-tag-action@1.33.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          INITIAL_VERSION: 0.0.1
+          DEFAULT_BUMP: minor
+          PRERELEASE_SUFFIX: ${{ env.BRANCH_NAME }}
+          RELEASE_BRANCHES: main
+          WITH_V: true
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID_ACTIONS }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY_ACTIONS }}
+          aws-region: eu-west-1
+          role-to-assume: arn:aws:iam::311462405659:role/sirius-actions-ci
+          role-duration-seconds: 3600
+          role-session-name: GitHubActions
+
+      - name: ECR Login
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v1
+        with:
+          registries: 311462405659
+
+      - name: Push Container
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          MEMBRANE_ECR_REPOSITORY: sirius/membrane-app
+        run: |
+          docker tag data-sync:latest $ECR_REGISTRY/$MEMBRANE_ECR_REPOSITORY:${{ steps.bump_version.outputs.tag }}
+          if [ $BRANCH_NAME == "main" ]; then
+            docker tag data-sync:latest $ECR_REGISTRY/$MEMBRANE_ECR_REPOSITORY:latest
+            docker tag data-sync:latest $ECR_REGISTRY/$MEMBRANE_ECR_REPOSITORY:main-${{ steps.bump_version.outputs.tag }}
+            # We want all of the tags pushed
+            docker push --all-tags $ECR_REGISTRY/$MEMBRANE_ECR_REPOSITORY
+          else
+            docker push $ECR_REGISTRY/$MEMBRANE_ECR_REPOSITORY:${{ steps.bump_version.outputs.tag }}
+          fi
