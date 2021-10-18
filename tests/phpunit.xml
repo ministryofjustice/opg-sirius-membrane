@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" backupGlobals="false" backupStaticAttributes="false" bootstrap="../vendor/autoload.php" colors="true" columns="max" verbose="true" xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.3/phpunit.xsd">
+  <coverage includeUncoveredFiles="true">
+    <include>
+      <directory suffix=".php">./../module/Application/src</directory>
+    </include>
+  </coverage>
+  <listeners>
+    <listener class="JohnKary\PHPUnit\Listener\SpeedTrapListener">
+      <arguments>
+        <array>
+          <element key="slowThreshold">
+            <integer>300</integer>
+          </element>
+          <element key="reportLength">
+            <integer>30</integer>
+          </element>
+        </array>
+      </arguments>
+    </listener>
+  </listeners>
+  <testsuites>
+    <testsuite name="unit">
+      <directory>../module/Application/test/ApplicationTest</directory>
+      <exclude>../module/Application/test/ApplicationTest/Controller</exclude>
+    </testsuite>
+    <testsuite name="functional">
+      <directory>./../module/Application/test/ApplicationTest/Controller</directory>
+    </testsuite>
+  </testsuites>
+  <php>
+    <server name="SERVER_NAME" value="phpunit"/>
+    <server name="APPLICATION_ENV" value="development"/>
+  </php>
+</phpunit>

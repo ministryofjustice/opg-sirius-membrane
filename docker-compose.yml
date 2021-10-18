@@ -1,0 +1,45 @@
+---
+version: "3.6"
+
+services:
+# Dependent Services
+  membrane:
+    image: membrane-app:${BUILD_TAG:-latest}
+    build:
+      context: .
+    volumes: ["./test-output/:/output/"]
+    env_file: [./docker-compose.env]
+
+  postgres:
+    image: postgres:10.14
+    environment:
+      POSTGRES_USER: membrane
+      POSTGRES_PASSWORD: membrane
+      PGPASSWORD: membrane
+      POSTGRES_DB: membrane
+
+  api:
+    image: json-server:${BUILD_TAG:-latest}
+    build:
+      context: ./json-server
+
+  localstack:
+    image: localstack/localstack:0.12.6
+    volumes:
+      - "./localstack/init:/docker-entrypoint-initaws.d"
+      - "./localstack/wait:/scripts/wait"
+    environment:
+      AWS_DEFAULT_REGION: eu-west-1
+      HOSTNAME_EXTERNAL: localstack
+      SERVICES: dynamodb,sqs,ssm,secretsmanager,es
+
+# Utility Commands
+  wait-for-it:
+    image: wait-for-it:latest
+    build:
+      context: ./wait-for-it
+    command:
+      - -address
+      - postgres:5432
+      - --timeout=30
+      - -debug

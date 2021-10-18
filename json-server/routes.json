@@ -1,0 +1,5 @@
+{
+    "/api/health-check/db-version": "/db-version",
+    "/api/health-check/service-status": "/healthcheck",
+    "/api/v1/users/current": "/user"
+}
