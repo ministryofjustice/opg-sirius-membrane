@@ -1,0 +1,83 @@
+{
+    "name": "ministryofjustice/opg-core-auth-membrane",
+    "description": "OPG Core Authentication Membrane",
+    "keywords": [
+        "ministryofjustice",
+        "opg",
+        "authentication"
+    ],
+    "homepage": "https://github.com/ministryofjustice/opg-sirius",
+    "license": [
+        "ministryofjustice"
+    ],
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "git@github.com:ministryofjustice/doctrine-migration-version-checker.git"
+        },
+        {
+            "type": "vcs",
+            "url": "git@github.com:ministryofjustice/jwt-laminas-auth.git"
+        }
+    ],
+    "require": {
+        "php": ">=8.0",
+        "ext-intl": "*",
+        "ext-json": "*",
+        "alphagov/notifications-php-client": "^3.2",
+        "aws/aws-sdk-php-zf2": "^4.2",
+        "doctrine/data-fixtures": "^1.3",
+        "doctrine/doctrine-orm-module": "^4.0",
+        "doctrine/migrations": "^3.0",
+        "doctrine/persistence": "2.2.1",
+        "laminas-api-tools/api-tools-content-negotiation": "^1.4",
+        "laminas/laminas-crypt": "^3.3",
+        "laminas/laminas-hydrator": "^4.1",
+        "laminas/laminas-log": "^2.12",
+        "laminas/laminas-mvc": "^3.1",
+        "laminas/laminas-mvc-console": "^1.2",
+        "laminas/laminas-mvc-i18n": "^1.1",
+        "laminas/laminas-session": "^2.9",
+        "ministryofjustice/doctrine-migration-version-checker": "^4.0",
+        "ministryofjustice/jwt-laminas-auth": "^4.0",
+        "php-http/guzzle6-adapter": "^2.0"
+    },
+    "require-dev": {
+        "johnkary/phpunit-speedtrap": "~4.0",
+        "laminas/laminas-test": "^3.4",
+        "phpstan/phpstan": "^0.12.11",
+        "phpunit/phpunit": "^9.5",
+        "roave/security-advisories": "dev-master"
+    },
+    "autoload": {
+        "psr-0": {
+            "Application": "module/Application/src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "ApplicationTest\\": "module/Application/test/ApplicationTest/",
+            "Moj\\Opg\\Sirius\\Membrane\\Test\\": "tests/"
+        }
+    },
+    "config": {
+        "sort-packages": true,
+        "platform": {
+            "php": "8.0",
+            "ext-json": "1",
+            "ext-intl": "1"
+        }
+    },
+    "scripts": {
+        "test": [
+            "@test-unit",
+            "@test-functional",
+            "@test-phpstan"
+        ],
+        "test-unit": "@php vendor/bin/phpunit --configuration=tests/phpunit.xml --exclude-group=functional --testsuite=unit --log-junit=build/output/phpunit/log/unit-junit.xml",
+        "test-unit-coverage": "@test-unit --coverage-clover=build/output/phpunit/coverage/unit/clover.xml --coverage-html=build/output/phpunit/coverage/unit/",
+        "test-functional": "@php vendor/bin/phpunit --configuration=tests/phpunit.xml --testsuite=functional --log-junit=build/output/phpunit/log/functional-junit.xml",
+        "test-functional-coverage": "@test-functional --coverage-clover=build/output/phpunit/coverage/functional/clover.xml --coverage-html=build/output/phpunit/coverage/functional/",
+        "test-phpstan": "@php vendor/bin/phpstan analyze module/Application/src --level=1"
+    }
+}
