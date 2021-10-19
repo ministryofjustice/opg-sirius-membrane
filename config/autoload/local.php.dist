@@ -1,0 +1,10 @@
+<?php
+
+return array(
+ 'application' => [
+  'baseUri' => 'http://zf2.be.local',
+ ],
+ 'authentication' => [
+  'baseUri' => 'http://localhost:9393',
+ ],
+);
