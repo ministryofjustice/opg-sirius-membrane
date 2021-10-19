@@ -77,12 +77,6 @@ jobs:
           check_name: "PHP Unit Test Results"
           files: test-output/unit.xml
 
-      - name: Publish Report
-        uses: danhunsaker/clover-reporter-action@v0.2.17-clover
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          clover-file: "test-output/clover.xml"
-
       - name: Check & Publish Report
         uses: johanvanhelden/gha-clover-test-coverage-check@v1
         with:
