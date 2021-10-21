@@ -1,6 +1,7 @@
 <?php
 
 use Application\Config\SessionSaveHandlerConfigMapper;
+use Application\Console\ImportFixtures;
 use Application\Session\SaveHandler\EncryptedSessionSaveHandler;
 use Application\Model\Entity\UserAccount;
 use Application\Controller;
@@ -327,6 +328,11 @@ return [
                 ],
             ],
         ],
+    ],
+    'laminas-cli' => [
+        'commands' => [
+            'data-fixture:import' => ImportFixtures::class,
+        ]
     ],
     'session' => [
         'config' => [
