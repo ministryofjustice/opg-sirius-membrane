@@ -1,6 +1,7 @@
 <?php
 
 use Application\Config\SessionSaveHandlerConfigMapper;
+use Application\Console\ImportFixtures;
 use Application\Session\SaveHandler\EncryptedSessionSaveHandler;
 use Application\Model\Entity\UserAccount;
 use Application\Controller;
@@ -234,7 +235,6 @@ return [
             Controller\UserResendActivationEmailController::class => Controller\Factory\UserResendActivationEmailControllerFactory::class,
             Controller\UserRestController::class => Controller\Factory\UserRestControllerFactory::class,
             Controller\UserStatusController::class => Controller\Factory\UserStatusControllerFactory::class,
-            Controller\Console\ImportFixturesController::class => Controller\Console\Factory\ImportFixturesControllerFactory::class
         ],
         'invokables' => [
             Controller\NotImplementedController::class => Controller\NotImplementedController::class,
@@ -313,20 +313,10 @@ return [
         ],
     ],
     // Placeholder for console routes
-    'console' => [
-        'router' => [
-            'routes' => [
-                'sirius-import-fixtures' => [
-                    'options' => [
-                        'route' => 'data-fixture:import [--append] [--purge-with-truncate]',
-                        'defaults' => [
-                            'controller' => Controller\Console\ImportFixturesController::class,
-                            'action' => 'import',
-                        ],
-                    ],
-                ],
-            ],
-        ],
+    'laminas-cli' => [
+        'commands' => [
+            'data-fixture:import' => ImportFixtures::class,
+        ]
     ],
     'session' => [
         'config' => [
