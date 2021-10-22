@@ -48,9 +48,9 @@ functional-setup:
 	docker-compose build --parallel api wait-for-it
 	docker-compose up -d api localstack postgres
 	docker-compose run --rm wait-for-it -address postgres:5432 --timeout=30 -debug
-	docker-compose run --rm membrane vendor/bin/doctrine-module orm:schema-tool:drop --force --full-database --no-interaction
-	docker-compose run --rm membrane vendor/bin/doctrine-module migrations:migrate --no-interaction
-	docker-compose run --rm membrane vendor/bin/laminas data-fixture:import --append
+	docker-compose run --rm membrane php public/index.php orm:schema-tool:drop --force --full-database --no-interaction
+	docker-compose run --rm membrane php public/index.php migrations:migrate --no-interaction
+	docker-compose run --rm membrane php public/index.php data-fixture:import --append
 	docker-compose exec -T localstack bash -c '. /scripts/wait/wait.sh'
 
 functional-test:
