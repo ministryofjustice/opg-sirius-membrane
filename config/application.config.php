@@ -9,7 +9,6 @@ $modules = [
     'AwsModule',
     'Laminas\Router',
     'Laminas\I18n',
-    'Laminas\Mvc\Console',
     'Laminas\ApiTools\ContentNegotiation',
 ];
 
