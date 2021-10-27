@@ -81,11 +81,12 @@ jobs:
           check_name: "PHP Unit Test Results"
           files: test-output/unit.xml
 
-      - name: Check & Publish Report
-        uses: johanvanhelden/gha-clover-test-coverage-check@v1
+      - name: Coverage Report
+        uses: lucassabreu/comment-coverage-clover@main
         with:
-          percentage: "45"
-          filename: "test-output/clover.xml"
+          file: "test-output/clover.xml"
+          min-line-coverage: 47
+          min-method-coverage: 44
 
       - name: Functional Test
         run: |
