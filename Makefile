@@ -1,3 +1,5 @@
+all: lint build scan inspec unit functional cleanup down
+
 lint:
 	docker run --volume ${PWD}:/project \
 		--rm jakzal/phpqa \

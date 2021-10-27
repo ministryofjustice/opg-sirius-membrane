@@ -32,3 +32,6 @@ COPY phpstan-baseline.neon phpstan-baseline.neon
 ENV PHP_FPM_MAX_CHILDREN "8"
 ENV PHP_FPM_MEMORY_LIMIT "256M"
 ENV PHP_FPM_MAX_START_CHILDREN "4"
+RUN chown -R www-data /var/www/
+
+USER "www-data"
