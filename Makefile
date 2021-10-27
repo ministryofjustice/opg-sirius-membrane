@@ -13,6 +13,9 @@ lint:
 build:
 	docker-compose build membrane
 
+build-coverage:
+	docker-compose build membrane-coverage
+
 scan:
 	trivy --exit-code 0 --severity MEDIUM,HIGH membrane-app:latest
 	trivy --exit-code 1 --severity CRITICAL membrane-app:latest
@@ -31,17 +34,14 @@ unit:
 		--log-junit=/output/unit.xml
 
 unit-coverage:
-	docker-compose run --rm membrane \
-		sh -c \
-		"pecl install pcov; \
-		docker-php-ext-enable pcov; \
+	docker-compose run --rm membrane-coverage \
 		vendor/bin/phpunit \
 		--configuration=tests/phpunit.xml \
 		--exclude-group=functional \
 		--testsuite=unit \
 		--log-junit=/output/unit.xml \
 		--coverage-clover=/output/clover.xml \
-		--coverage-html=/output/unit/"
+		--coverage-html=/output/unit/
 
 
 functional: functional-setup functional-test

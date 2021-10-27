@@ -4,7 +4,7 @@ COPY composer.lock composer.lock
 RUN composer install --no-interaction --ignore-platform-reqs \
   && composer dumpautoload -o
 
-FROM php:8.0-fpm-alpine
+FROM php:8.0-fpm-alpine as main
 
 RUN apk --no-cache add postgresql-dev fcgi icu-dev ncurses autoconf $PHPIZE_DEPS \
   && docker-php-ext-install pdo pdo_pgsql opcache intl \
@@ -32,6 +32,14 @@ COPY phpstan-baseline.neon phpstan-baseline.neon
 ENV PHP_FPM_MAX_CHILDREN "8"
 ENV PHP_FPM_MEMORY_LIMIT "256M"
 ENV PHP_FPM_MAX_START_CHILDREN "4"
+
+FROM main as prod
+RUN chown -R www-data /var/www/
+
+USER "www-data"
+
+FROM main as coverage
+RUN pecl install pcov && docker-php-ext-enable pcov;
 RUN chown -R www-data /var/www/
 
 USER "www-data"
