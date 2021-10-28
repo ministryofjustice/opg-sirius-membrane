@@ -14,6 +14,9 @@ control 'Docker Config Files' do
   describe file('/usr/local/etc/php/conf.d/opcache.ini') do
     it { should exist }
   end
+  describe command('whoami') do
+    its('stdout') { should eq "www-data\n" }
+  end
 end
 
 control 'PHP Healthcheck' do
