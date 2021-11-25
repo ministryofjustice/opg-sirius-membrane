@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Application\Controller\V1;
 
+use Application\Model\Entity\UserAccount;
 use Application\Service\AuthenticationServiceConstructor;
 use Application\Service\SecurityLogger;
 use Application\Service\UserSessionService;
@@ -44,14 +45,23 @@ class SessionRestController extends AbstractRestfulController
 
             if (!$authService->hasIdentity() || $authService->getIdentity() === null) {
                 $this->securityLogger->preauthorizedLoginFailed('Could not verify token');
-                $response->setStatusCode(401);
 
+                $response->setStatusCode(401);
                 return new JsonModel([
                     'error' => 'Could not verify token',
                 ]);
             }
 
             $user = $authService->getIdentity();
+
+            if ($user->getStatus() === UserAccount::STATUS_LOCKED || $user->getStatus() === UserAccount::STATUS_SUSPENDED) {
+                $this->securityLogger->preauthorizedLoginFailed(sprintf('Account is %s', $user->getStatus()));
+
+                $response->setStatusCode(403);
+                return new JsonModel([
+                    'status' => $user->getStatus(),
+                ]);
+            }
 
             $this->securityLogger->preauthorizedLoginSuccessful($user->getId());
             $response->setStatusCode(201);
