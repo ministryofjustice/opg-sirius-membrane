@@ -86,11 +86,25 @@ class SessionRestControllerTest extends BaseControllerTestCase
         $this->assertEquals('{"email":"valid@email.com","authentication_token":"validSessionId","userId":2}', $content);
     }
 
-    public function testCanLogInWithPreconfiguredCredentials()
+    public function preauthStatuses()
+    {
+        return [
+            [UserAccount::STATUS_ACTIVE, true],
+            [UserAccount::STATUS_NOT_ACTIVATED, true],
+            [UserAccount::STATUS_LOCKED, false],
+            [UserAccount::STATUS_SUSPENDED, false],
+        ];
+    }
+
+    /**
+     * @dataProvider preauthStatuses
+     */
+    public function testCanLogInWithPreconfiguredCredentialsIfValidStatus(string $status, bool $isValid)
     {
         $user = new UserAccount();
         $user->setId(39);
         $user->setEmail('my-email@opgtest.com');
+        $user->setStatus($status);
 
         $mockAuthenticationService = $this->createMock(AuthenticationService::class);
         $mockAuthenticationService->expects($this->once())->method('hasIdentity')->willReturn(true);
@@ -100,9 +114,11 @@ class SessionRestControllerTest extends BaseControllerTestCase
             ->method('getBypassMembrane')
             ->willReturn($mockAuthenticationService);
 
-        $this->mockUserSessionService->expects($this->atLeastOnce())
-            ->method('getSessionId')
-            ->willReturn('validSessionId');
+        if ($isValid) {
+            $this->mockUserSessionService->expects($this->atLeastOnce())
+                ->method('getSessionId')
+                ->willReturn('validSessionId');
+        }
 
         $this->logger->expects($this->atLeastOnce())
             ->method('info')
@@ -121,9 +137,15 @@ class SessionRestControllerTest extends BaseControllerTestCase
         $request->setContent('{"preauthorized":true}');
         $this->dispatch('/auth/v1/sessions');
 
-        $this->assertResponseStatusCode(Response::STATUS_CODE_201);
-        $content = $this->getResponse()->getContent();
-        $this->assertEquals('{"email":"my-email@opgtest.com","authentication_token":"validSessionId"}', $content);
+        if ($isValid) {
+            $this->assertResponseStatusCode(Response::STATUS_CODE_201);
+            $content = $this->getResponse()->getContent();
+            $this->assertEquals('{"email":"my-email@opgtest.com","authentication_token":"validSessionId"}', $content);
+        } else {
+            $this->assertResponseStatusCode(Response::STATUS_CODE_403);
+            $content = $this->getResponse()->getContent();
+            $this->assertEquals('{"status":"' . $status . '"}', $content);
+        }
     }
 
     public function testCanNotLogInWithInvalidEmail()
