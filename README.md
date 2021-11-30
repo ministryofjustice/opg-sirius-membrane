@@ -7,6 +7,12 @@
 * Authentication example *(with request/response body)*
 * Ddc ingestion example *(with request/response header & body)*
 
+### Installing packages locally
+
+```shell
+docker-compose run composer
+```
+
 ## Authentication
 
 ### End points
