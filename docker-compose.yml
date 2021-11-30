@@ -35,6 +35,13 @@ services:
       SERVICES: dynamodb,sqs,ssm,secretsmanager,es
 
 # Utility Commands
+  composer:
+    image: composer
+    command: ["install","--ignore-platform-reqs"]
+    volumes:
+      - ~/.composer:/tmp
+      - .:/app
+
   membrane-coverage:
     image: membrane-app:coverage
     build:
