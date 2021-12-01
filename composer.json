@@ -47,7 +47,7 @@
     "require-dev": {
         "johnkary/phpunit-speedtrap": "~4.0",
         "laminas/laminas-test": "^3.4",
-        "phpstan/phpstan": "^0.12.11",
+        "phpstan/phpstan": "^1.2",
         "phpunit/phpunit": "^9.5",
         "roave/security-advisories": "dev-master"
     },

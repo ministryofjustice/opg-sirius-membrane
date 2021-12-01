@@ -25,6 +25,26 @@ inspec:
 	inspec exec docker/tests -t docker://opg-sirius-membrane_membrane_1 --reporter cli junit:test-output/inspec.xml
 	$(MAKE) down
 
+phpstan:
+	docker-compose run --rm membrane \
+		vendor/bin/phpstan analyze \
+		--level=7 \
+		--configuration phpstan.neon
+
+phpstan-baseline:
+	> phpstan-baseline.neon
+	docker-compose -f docker-compose.yml -f docker-compose.phpstan.yml run --rm membrane \
+		vendor/bin/phpstan analyze \
+		--level=7 \
+		--configuration phpstan.neon \
+	    --generate-baseline
+
+phpstan-all-errors:
+	docker-compose run --rm membrane \
+		vendor/bin/phpstan analyze \
+		--level=7 \
+		--configuration phpstan.all-errors.neon
+
 unit:
 	docker-compose run --rm membrane \
 		vendor/bin/phpunit \

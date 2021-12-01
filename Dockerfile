@@ -19,27 +19,25 @@ COPY docker/opcache.ini /usr/local/etc/php/conf.d/opcache.ini
 COPY docker/www.conf /usr/local/etc/php-fpm.d/www.conf
 
 WORKDIR /var/www/
-COPY public public
-COPY config config
-COPY --from=composer /app/vendor vendor
-COPY module module
-COPY tests tests
-COPY MembraneDoctrineMigrations MembraneDoctrineMigrations
-COPY phpstan.neon phpstan.neon
-COPY phpstan.all-errors.neon phpstan.all-errors.neon
-COPY phpstan-baseline.neon phpstan-baseline.neon
+COPY --chown=www-data:www-data --from=composer /app/vendor vendor
+COPY --chown=www-data:www-data config config
+COPY --chown=www-data:www-data phpstan.neon phpstan.neon
+COPY --chown=www-data:www-data phpstan.all-errors.neon phpstan.all-errors.neon
+COPY --chown=www-data:www-data phpstan-baseline.neon phpstan-baseline.neon
+COPY --chown=www-data:www-data public public
+COPY --chown=www-data:www-data MembraneDoctrineMigrations MembraneDoctrineMigrations
+COPY --chown=www-data:www-data tests tests
+COPY --chown=www-data:www-data module module
 
 ENV PHP_FPM_MAX_CHILDREN "8"
 ENV PHP_FPM_MEMORY_LIMIT "256M"
 ENV PHP_FPM_MAX_START_CHILDREN "4"
 
 FROM main as prod
-RUN chown -R www-data /var/www/
 
 USER "www-data"
 
 FROM main as coverage
 RUN pecl install pcov && docker-php-ext-enable pcov;
-RUN chown -R www-data /var/www/
 
 USER "www-data"
