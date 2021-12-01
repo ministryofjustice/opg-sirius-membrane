@@ -7,7 +7,7 @@ namespace Application;
 use Application\ContentNegotiation\XmlContentTypeListener;
 use Application\View\Strategy\XmlStrategy;
 use Laminas\EventManager\EventInterface;
-use Laminas\Http\Request;
+use Laminas\Http\PhpEnvironment\Request;
 use Laminas\Mvc\ModuleRouteListener;
 use Laminas\Mvc\MvcEvent;
 use Throwable;
@@ -19,7 +19,7 @@ use Laminas\Log\Logger;
 
 class Module
 {
-    public function onBootstrap(MvcEvent $e)
+    public function onBootstrap(MvcEvent $e): void
     {
         $eventManager = $e->getApplication()->getEventManager();
         $serviceManager = $e->getApplication()->getServiceManager();
@@ -72,7 +72,10 @@ class Module
         }
     }
 
-    public function getConfig()
+    /**
+     * @return array<mixed>
+     */
+    public function getConfig(): array
     {
         return include __DIR__ . '/config/module.config.php';
     }
