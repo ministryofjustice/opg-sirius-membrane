@@ -1,0 +1,7 @@
+---
+version: "3.6"
+
+services:
+  membrane:
+    volumes:
+      - "./phpstan-baseline.neon:/var/www/phpstan-baseline.neon"

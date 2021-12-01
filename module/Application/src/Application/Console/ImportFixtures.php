@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Application\Console;
 
 use Doctrine\Common\DataFixtures\Executor\ORMExecutor;
@@ -12,6 +14,12 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class ImportFixtures extends Command
 {
+    /**
+     * @param ORMPurger $purger
+     * @param Loader $loader
+     * @param ORMExecutor $executor
+     * @param string[] $fixtureDirectories
+     */
     public function __construct(
         private ORMPurger $purger,
         private Loader $loader,

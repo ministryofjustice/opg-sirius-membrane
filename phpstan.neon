@@ -2,4 +2,6 @@ includes:
   - phpstan-baseline.neon
 parameters:
   paths:
-    - module/Application/src
+    - module/Application
+  excludePaths:
+    - module/Application/test
