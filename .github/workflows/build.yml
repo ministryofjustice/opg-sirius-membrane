@@ -15,7 +15,7 @@ defaults:
 
 jobs:
   build:
-    name: Lint, Build, Test
+    name: Lint, Build, Analyse, Test
     runs-on: ubuntu-latest
     outputs:
       tag: ${{ steps.bump_version.outputs.tag }}
@@ -69,6 +69,10 @@ jobs:
         with:
           check_name: "Inspec Test Results"
           files: test-output/inspec.xml
+
+      - name: Static Analysis
+        run: |
+          make phpstan
 
       - name: Unit Test & Coverage
         run: |

@@ -29,7 +29,6 @@ return [
         'SessionEncryptionFilter' => \Application\Service\Factory\SessionEncryptionFilterFactory::class,
         'SessionDecryptionFilter' => \Application\Service\Factory\SessionDecryptionFilterFactory::class,
         \Application\Session\SaveHandler\EncryptedSessionSaveHandler::class => \Application\Session\SaveHandler\Factory\EncryptedSessionSaveHandlerFactory::class,
-        \Application\Service\DoctrineMigrationVersionService::class => \Application\Service\Factory\DoctrineMigrationVersionServiceFactory::class,
         \Application\Service\SecurityLogger::class => \Application\Service\Factory\SecurityLoggerFactory::class,
         Console\ImportFixtures::class => Console\Factory\ImportFixturesFactory::class,
     ],
