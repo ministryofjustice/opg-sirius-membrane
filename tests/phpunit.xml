@@ -4,6 +4,9 @@
     <include>
       <directory suffix=".php">./../module/Application/src</directory>
     </include>
+    <exclude>
+      <directory suffix="Factory.php">./../module/Application/src</directory>
+    </exclude>
   </coverage>
   <listeners>
     <listener class="JohnKary\PHPUnit\Listener\SpeedTrapListener">
