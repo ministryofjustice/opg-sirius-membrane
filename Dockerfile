@@ -19,6 +19,8 @@ COPY docker/opcache.ini /usr/local/etc/php/conf.d/opcache.ini
 COPY docker/www.conf /usr/local/etc/php-fpm.d/www.conf
 
 WORKDIR /var/www/
+RUN chown -R www-data /var/www/
+
 COPY --chown=www-data:www-data --from=composer /app/vendor vendor
 COPY --chown=www-data:www-data config config
 COPY --chown=www-data:www-data phpstan.neon phpstan.neon

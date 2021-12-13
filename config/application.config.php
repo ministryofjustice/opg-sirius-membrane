@@ -6,7 +6,6 @@ $modules = [
     'JwtLaminasAuth',
     'DoctrineModule',
     'DoctrineORMModule',
-    'AwsModule',
     'Laminas\Router',
     'Laminas\I18n',
     'Laminas\ApiTools\ContentNegotiation',

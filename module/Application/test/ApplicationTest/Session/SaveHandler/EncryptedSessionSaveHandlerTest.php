@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace ApplicationTest\Session\SaveHandler;
 
 use Application\Session\SaveHandler\EncryptedSessionSaveHandler;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Laminas\Filter\Encrypt;
 use Laminas\Filter\Decrypt;
@@ -12,14 +13,10 @@ use Laminas\Session\SaveHandler\SaveHandlerInterface;
 
 class EncryptedSessionSaveHandlerTest extends TestCase
 {
-    protected $mockSessionSaveHandler;
-    protected $mockEncryptionFilter;
-    protected $mockDecryptionFilter;
-
-    /**
-     * @var EncryptedSessionSaveHandler
-     */
-    protected $encryptedSessionSaveHandler;
+    protected MockObject|SaveHandlerInterface $mockSessionSaveHandler;
+    protected MockObject|Encrypt $mockEncryptionFilter;
+    protected MockObject|Decrypt $mockDecryptionFilter;
+    protected EncryptedSessionSaveHandler $encryptedSessionSaveHandler;
 
     public function setup(): void
     {

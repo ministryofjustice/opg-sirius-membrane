@@ -8,34 +8,13 @@ use Laminas\Session\SaveHandler\SaveHandlerInterface;
 use Laminas\Filter\Encrypt;
 use Laminas\Filter\Decrypt;
 
-/**
- * Encrypted session save handler
- */
 class EncryptedSessionSaveHandler implements SaveHandlerInterface
 {
-    /**
-     * @var SaveHandlerInterface
-     */
-    protected $sessionSaveHandler;
-
-    /**
-     * @var Encrypt
-     */
-    protected $encryptFilter;
-
-    /**
-     * @var Decrypt
-     */
-    protected $decryptFilter;
-
     public function __construct(
-        SaveHandlerInterface $sessionSaveHandler,
-        Encrypt $encryptFilter,
-        Decrypt $decryptFilter
+        protected \SessionHandlerInterface $sessionSaveHandler,
+        protected Encrypt $encryptFilter,
+        protected Decrypt $decryptFilter
     ) {
-        $this->sessionSaveHandler = $sessionSaveHandler;
-        $this->encryptFilter = $encryptFilter;
-        $this->decryptFilter = $decryptFilter;
     }
 
     /**

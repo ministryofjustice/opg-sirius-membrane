@@ -7,12 +7,9 @@
 $config = [
     'aws' => [
         'debug' => filter_var(getenv('OPG_CORE_MEMBRANE_AWS_DEBUG'), FILTER_VALIDATE_BOOLEAN),
+        'endpoint' => getenv('OPG_CORE_MEMBRANE_SESSION_ENDPOINT_URL') ?: null,
         'region' => getenv('AWS_REGION') ?: "eu-west-1",
         'version' => 'latest',
-        'DynamoDb' => [
-            'endpoint' => getenv('OPG_CORE_MEMBRANE_SESSION_ENDPOINT_URL') ?: null,
-            'version' => 'latest',
-        ],
     ],
 ];
 

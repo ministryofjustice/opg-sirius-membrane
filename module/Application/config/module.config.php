@@ -1,6 +1,5 @@
 <?php
 
-use Application\Config\SessionSaveHandlerConfigMapper;
 use Application\Console\ImportFixtures;
 use Application\Session\SaveHandler\EncryptedSessionSaveHandler;
 use Application\Model\Entity\UserAccount;
@@ -320,7 +319,6 @@ return [
     'session' => [
         'config' => [
             'save_handler' => EncryptedSessionSaveHandler::class,
-            'actual_save_handler' => SessionSaveHandlerConfigMapper::getConfig(), // the underlying save handler that save_handler wraps around
             'options' => [
                 'name' => 'membrane',
                 'gc_maxlifetime' => getenv('OPG_CORE_SESSION_TIMEOUT') ? intval(getenv('OPG_CORE_SESSION_TIMEOUT')) : 3600,

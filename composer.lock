@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "479c1f843bc0eddc247bd0ab0b1b7d41",
+    "content-hash": "e83bd4ca26e9f93b0646669360a3e274",
     "packages": [
         {
             "name": "alphagov/notifications-php-client",
@@ -115,16 +115,16 @@
         },
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.206.0",
+            "version": "3.207.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "ade6621f709261097a0fd2ca0cad7a15ba899b76"
+                "reference": "c5252787784bf41b678b03cb3292d413fe281319"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/ade6621f709261097a0fd2ca0cad7a15ba899b76",
-                "reference": "ade6621f709261097a0fd2ca0cad7a15ba899b76",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/c5252787784bf41b678b03cb3292d413fe281319",
+                "reference": "c5252787784bf41b678b03cb3292d413fe281319",
                 "shasum": ""
             },
             "require": {
@@ -200,73 +200,9 @@
             "support": {
                 "forum": "https://forums.aws.amazon.com/forum.jspa?forumID=80",
                 "issues": "https://github.com/aws/aws-sdk-php/issues",
-                "source": "https://github.com/aws/aws-sdk-php/tree/3.206.0"
+                "source": "https://github.com/aws/aws-sdk-php/tree/3.207.0"
             },
-            "time": "2021-11-29T23:46:23+00:00"
-        },
-        {
-            "name": "aws/aws-sdk-php-zf2",
-            "version": "4.3.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/aws/aws-sdk-php-zf2.git",
-                "reference": "a468879464c19729a1af14e979c448da16e513b0"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php-zf2/zipball/a468879464c19729a1af14e979c448da16e513b0",
-                "reference": "a468879464c19729a1af14e979c448da16e513b0",
-                "shasum": ""
-            },
-            "require": {
-                "aws/aws-sdk-php": "3.*",
-                "laminas/laminas-dependency-plugin": "^1.0",
-                "laminas/laminas-filter": "^2.9.0",
-                "laminas/laminas-servicemanager": "^2.7.0 || ^3.0",
-                "laminas/laminas-session": "^2.7.0",
-                "laminas/laminas-view": "^2.8",
-                "php": "^5.6 || ^7.0"
-            },
-            "require-dev": {
-                "laminas/laminas-modulemanager": "2.7.*",
-                "phpunit/phpunit": "5.*",
-                "squizlabs/php_codesniffer": "~2.3"
-            },
-            "type": "library",
-            "extra": {
-                "zf": {
-                    "module": "AwsModule"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "AwsModule\\": "src/"
-                },
-                "classmap": [
-                    "./Module.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "Apache-2.0"
-            ],
-            "description": "Zend Framework 2 Module that allows easy integration the AWS SDK for PHP",
-            "keywords": [
-                "amazon",
-                "aws",
-                "cloudfront",
-                "dynamodb",
-                "ec2",
-                "s3",
-                "sqs",
-                "zend",
-                "zf2"
-            ],
-            "support": {
-                "issues": "https://github.com/aws/aws-sdk-php-zf2/issues",
-                "source": "https://github.com/aws/aws-sdk-php-zf2/tree/4.3.0"
-            },
-            "time": "2020-10-29T17:46:27+00:00"
+            "time": "2021-11-30T23:44:55+00:00"
         },
         {
             "name": "brick/varexporter",
@@ -2994,62 +2930,6 @@
                 }
             ],
             "time": "2021-11-28T16:04:24+00:00"
-        },
-        {
-            "name": "laminas/laminas-dependency-plugin",
-            "version": "1.0.4",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/laminas/laminas-dependency-plugin.git",
-                "reference": "38bf91861f5b4d49f9a1c530327c997f7a7fb2db"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/laminas/laminas-dependency-plugin/zipball/38bf91861f5b4d49f9a1c530327c997f7a7fb2db",
-                "reference": "38bf91861f5b4d49f9a1c530327c997f7a7fb2db",
-                "shasum": ""
-            },
-            "require": {
-                "composer-plugin-api": "^1.1",
-                "php": "^5.6 || ^7.0"
-            },
-            "require-dev": {
-                "composer/composer": "^1.9",
-                "dealerdirect/phpcodesniffer-composer-installer": "^0.5.0",
-                "phpcompatibility/php-compatibility": "^9.3",
-                "phpunit/phpunit": "^8.4",
-                "roave/security-advisories": "dev-master",
-                "webimpress/coding-standard": "^1.0"
-            },
-            "type": "composer-plugin",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.0.x-dev",
-                    "dev-develop": "1.1.x-dev"
-                },
-                "class": "Laminas\\DependencyPlugin\\DependencyRewriterPlugin"
-            },
-            "autoload": {
-                "psr-4": {
-                    "Laminas\\DependencyPlugin\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-3-Clause"
-            ],
-            "description": "Replace zendframework and zfcampus packages with their Laminas Project equivalents.",
-            "support": {
-                "issues": "https://github.com/laminas/laminas-dependency-plugin/issues",
-                "source": "https://github.com/laminas/laminas-dependency-plugin/tree/1.0.4"
-            },
-            "funding": [
-                {
-                    "url": "https://funding.communitybridge.org/projects/laminas-project",
-                    "type": "community_bridge"
-                }
-            ],
-            "time": "2020-05-20T13:45:39+00:00"
         },
         {
             "name": "laminas/laminas-escaper",
