@@ -1,4 +1,4 @@
-FROM composer:2.1.0 as composer
+FROM composer:2.2.0 as composer
 COPY composer.json composer.json
 COPY composer.lock composer.lock
 RUN composer install --no-interaction --ignore-platform-reqs \
