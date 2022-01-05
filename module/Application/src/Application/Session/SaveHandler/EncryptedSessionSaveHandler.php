@@ -56,6 +56,9 @@ class EncryptedSessionSaveHandler implements SaveHandlerInterface
         return $this->sessionSaveHandler->destroy($id);
     }
 
+    /**
+     * @return int|bool
+     */
     public function gc(int $maxlifetime)
     {
         return $this->sessionSaveHandler->gc($maxlifetime);
