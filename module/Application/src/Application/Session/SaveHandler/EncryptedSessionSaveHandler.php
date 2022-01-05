@@ -17,29 +17,17 @@ class EncryptedSessionSaveHandler implements SaveHandlerInterface
     ) {
     }
 
-    /**
-     * @param string $savePath
-     * @param string $name
-     * @return bool
-     */
-    public function open($savePath, $name)
+    public function open(string $savePath, string $name): bool
     {
         return $this->sessionSaveHandler->open($savePath, $name);
     }
 
-    /**
-     * @return bool
-     */
-    public function close()
+    public function close(): bool
     {
         return $this->sessionSaveHandler->close();
     }
 
-    /**
-     * @param string $id
-     * @return string
-     */
-    public function read($id)
+    public function read(string $id): string
     {
         // Return the data from the cache
         $data = $this->sessionSaveHandler->read($id);
@@ -53,12 +41,7 @@ class EncryptedSessionSaveHandler implements SaveHandlerInterface
         return $this->decryptFilter->filter($data);
     }
 
-    /**
-     * @param string $id
-     * @param string $data
-     * @return bool
-     */
-    public function write($id, $data)
+    public function write(string $id, string $data): bool
     {
         if (!empty($data)) {
             $data = $this->encryptFilter->filter($data);
@@ -68,20 +51,12 @@ class EncryptedSessionSaveHandler implements SaveHandlerInterface
         return $this->sessionSaveHandler->write($id, $data);
     }
 
-    /**
-     * @param string $id
-     * @return bool
-     */
-    public function destroy($id)
+    public function destroy(string $id): bool
     {
         return $this->sessionSaveHandler->destroy($id);
     }
 
-    /**
-     * @param int $maxlifetime
-     * @return bool
-     */
-    public function gc($maxlifetime)
+    public function gc(int $maxlifetime): bool
     {
         return $this->sessionSaveHandler->gc($maxlifetime);
     }
