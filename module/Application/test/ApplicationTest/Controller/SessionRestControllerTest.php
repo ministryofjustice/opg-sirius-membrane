@@ -166,7 +166,32 @@ class SessionRestControllerTest extends BaseControllerTestCase
         // Set expectations in the logger mock
         $this->securityLogger->expects($this->once())
             ->method('loginFailed')
-            ->with('Invalid email or password.');
+            ->with('Invalid email or password.', null);
+
+        $this->dispatchJsonLoginRequest('invalid@email.com', 'ValidPassword');
+        $this->assertResponseStatusCode(Response::STATUS_CODE_401);
+    }
+
+    public function testCanNotLogInWithInvalidPassword()
+    {
+        $serviceResponse = [
+            'status' => Response::STATUS_CODE_401,
+            'body' => [
+                'error' => 'Invalid email or password.',
+                'userId' => 123,
+            ],
+        ];
+
+        // Set up mock SessionManager object to return a session ID.
+        $this->mockUserSessionService->expects($this->once())
+            ->method('openUserSession')
+            ->with('invalid@email.com', 'ValidPassword')
+            ->will($this->returnValue($serviceResponse));
+
+        // Set expectations in the logger mock
+        $this->securityLogger->expects($this->once())
+            ->method('loginFailed')
+                             ->with('Invalid email or password.', 123);
 
         $this->dispatchJsonLoginRequest('invalid@email.com', 'ValidPassword');
         $this->assertResponseStatusCode(Response::STATUS_CODE_401);
