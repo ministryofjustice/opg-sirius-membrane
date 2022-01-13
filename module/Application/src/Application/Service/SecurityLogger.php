@@ -27,13 +27,14 @@ class SecurityLogger
         );
     }
 
-    public function loginFailed(string $reason): void
+    public function loginFailed(string $reason, ?int $userId = null): void
     {
         $this->logger->info(
             'User login failed',
             [
                 'category' => 'Security',
                 'subcategory' => 'Authentication',
+                'userId' => $userId,
                 'error' => $reason,
             ]
         );

@@ -2,12 +2,13 @@
 
 declare(strict_types=1);
 
-namespace ApplicationTest\Controller;
+namespace ApplicationTest\Controller\V1;
 
 use Application\Model\Entity\UserAccount;
 use Application\Service\AuthenticationServiceConstructor;
 use Application\Service\SecurityLogger;
 use Application\Service\UserSessionService;
+use ApplicationTest\Controller\BaseControllerTestCase;
 use Laminas\Authentication\AuthenticationService;
 use Laminas\Http\Headers;
 use Laminas\Http\Response;
@@ -242,7 +243,7 @@ class SessionRestControllerTest extends BaseControllerTestCase
         $loginJson = '{"user":{"email":"' . $username . '","password":"' . $password . '"}}';
         $request->setContent($loginJson);
 
-        $this->dispatch('/auth/sessions');
+        $this->dispatch('/auth/v1/sessions');
     }
 
     protected function dispatchLogoutRequest($admin_token)
@@ -256,6 +257,6 @@ class SessionRestControllerTest extends BaseControllerTestCase
         $request->setContent(json_encode([]));
         $request->setMethod('DELETE');
 
-        $this->dispatch('/auth/sessions/' . $admin_token);
+        $this->dispatch('/auth/v1/sessions/' . $admin_token);
     }
 }

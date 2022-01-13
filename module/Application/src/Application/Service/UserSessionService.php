@@ -67,15 +67,17 @@ class UserSessionService extends AbstractService
         $adapter->setCredential($password);
 
         $result = $this->getAuthenticationService($returnJwt)->authenticate();
+
+        /** @var ?UserAccount $userAccount */
+        $userAccount = $result->getIdentity();
+
         $response = [
             'status' => Response::STATUS_CODE_401,
             'body' => [
                 'error' => 'Invalid email or password.',
+                'userId' => $userAccount?->getId(),
             ],
         ];
-
-        /** @var UserAccount $userAccount */
-        $userAccount = $result->getIdentity();
 
         if ($result->isValid()) {
             $userAccount->setLastLoggedInValue();

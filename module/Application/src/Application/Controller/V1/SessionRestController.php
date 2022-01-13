@@ -88,7 +88,8 @@ class SessionRestController extends AbstractRestfulController
         if ($sessionOpenResponse['status'] == 201) {
             $this->securityLogger->loginSuccessful($sessionOpenResponse['body']['userId']);
         } elseif ($sessionOpenResponse['status'] == 401) {
-            $this->securityLogger->loginFailed($sessionOpenResponse['body']['error']);
+            $this->securityLogger->loginFailed($sessionOpenResponse['body']['error'], $sessionOpenResponse['body']['userId'] ?? null);
+            unset($sessionOpenResponse['body']['userId']);
         }
 
         return new JsonModel($sessionOpenResponse['body']);
