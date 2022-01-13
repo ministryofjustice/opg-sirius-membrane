@@ -301,24 +301,29 @@ class UserSessionServiceTest extends TestCase
 
     public function provideResponseResultPairs()
     {
-        $invalidResponse = [
-            'status' => Response::STATUS_CODE_401,
-            'body' => [
-                'error' => 'Invalid email or password.',
-            ],
-        ];
-
         $identity = new UserAccount();
         $identity->setId(365);
 
         return [
             [
                 new Result(Result::FAILURE_IDENTITY_NOT_FOUND, null, ['Identity not found']),
-                $invalidResponse,
+                [
+                    'status' => Response::STATUS_CODE_401,
+                    'body' => [
+                        'error' => 'Invalid email or password.',
+                        'userId' => null,
+                    ],
+                ],
             ],
             [
                 new Result(Result::FAILURE_CREDENTIAL_INVALID, $identity, ['Credential invalid']),
-                $invalidResponse,
+                [
+                    'status' => Response::STATUS_CODE_401,
+                    'body' => [
+                        'error' => 'Invalid email or password.',
+                        'userId' => 365,
+                    ],
+                ],
             ],
             [
                 new Result(LockedUser::FAILURE_ACCOUNT_LOCKED, $identity, ['Account Locked']),
