@@ -170,6 +170,9 @@ class SessionRestControllerTest extends BaseControllerTestCase
 
         $this->dispatchJsonLoginRequest('invalid@email.com', 'ValidPassword');
         $this->assertResponseStatusCode(Response::STATUS_CODE_401);
+
+        $content = $this->getResponse()->getContent();
+        $this->assertEquals('{"error":"Invalid email or password."}', $content);
     }
 
     public function testCanNotLogInWithInvalidPassword()
@@ -195,6 +198,9 @@ class SessionRestControllerTest extends BaseControllerTestCase
 
         $this->dispatchJsonLoginRequest('invalid@email.com', 'ValidPassword');
         $this->assertResponseStatusCode(Response::STATUS_CODE_401);
+
+        $content = $this->getResponse()->getContent();
+        $this->assertEquals('{"error":"Invalid email or password."}', $content);
     }
 
     public function testCanDeleteSession()
