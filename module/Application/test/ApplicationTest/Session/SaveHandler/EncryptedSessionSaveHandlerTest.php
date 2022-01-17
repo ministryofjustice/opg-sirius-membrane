@@ -162,10 +162,10 @@ class EncryptedSessionSaveHandlerTest extends TestCase
         $this->mockSessionSaveHandler->expects($this->once())
             ->method('gc')
             ->with($this->equalTo(123456789))
-            ->will($this->returnValue(true));
+            ->willReturn(1);
 
         $result = $this->encryptedSessionSaveHandler->gc(123456789);
 
-        $this->assertTrue($result);
+        $this->assertEquals(1, $result);
     }
 }

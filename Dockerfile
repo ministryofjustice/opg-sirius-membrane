@@ -1,10 +1,10 @@
-FROM composer:2.2.3 as composer
+FROM composer:2.2.4 as composer
 COPY composer.json composer.json
 COPY composer.lock composer.lock
 RUN composer install --no-interaction --ignore-platform-reqs \
   && composer dumpautoload -o
 
-FROM php:8.0-fpm-alpine as main
+FROM php:8.1.1-fpm-alpine as main
 
 RUN apk --no-cache add postgresql-dev fcgi icu-dev ncurses autoconf $PHPIZE_DEPS \
   && docker-php-ext-install pdo pdo_pgsql opcache intl \
