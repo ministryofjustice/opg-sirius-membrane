@@ -32,7 +32,6 @@
         "doctrine/migrations": "^3.3.2",
         "doctrine/persistence": "^2.2.2",
         "laminas-api-tools/api-tools-content-negotiation": "^1.4",
-        "laminas/laminas-cache-storage-adapter-apcu": "^2.0",
         "laminas/laminas-cli": "^1.2",
         "laminas/laminas-crypt": "^3.3",
         "laminas/laminas-hydrator": "^4.1",
