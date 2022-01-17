@@ -46,7 +46,7 @@
     },
     "require-dev": {
         "johnkary/phpunit-speedtrap": "~4.0",
-        "laminas/laminas-test": "^3.4",
+        "laminas/laminas-test": "^4.0",
         "phpstan/phpstan": "^1.2",
         "phpunit/phpunit": "^9.5",
         "roave/security-advisories": "dev-master"
@@ -68,6 +68,10 @@
             "php": "8.0",
             "ext-json": "1",
             "ext-intl": "1"
+        },
+        "allow-plugins": {
+            "composer/package-versions-deprecated": true,
+            "laminas/laminas-dependency-plugin": true
         }
     },
     "scripts": {
