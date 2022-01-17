@@ -65,7 +65,7 @@
     "config": {
         "sort-packages": true,
         "platform": {
-            "php": "8.0",
+            "php": "8.1",
             "ext-json": "1",
             "ext-intl": "1"
         },
