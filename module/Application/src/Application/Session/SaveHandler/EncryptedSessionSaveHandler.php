@@ -7,6 +7,7 @@ namespace Application\Session\SaveHandler;
 use Laminas\Session\SaveHandler\SaveHandlerInterface;
 use Laminas\Filter\Encrypt;
 use Laminas\Filter\Decrypt;
+use ReturnTypeWillChange;
 
 class EncryptedSessionSaveHandler implements SaveHandlerInterface
 {
@@ -20,26 +21,21 @@ class EncryptedSessionSaveHandler implements SaveHandlerInterface
     /**
      * @param string $savePath
      * @param string $name
-     * @return bool
      */
-    public function open($savePath, $name)
+    public function open($savePath, $name): bool
     {
         return $this->sessionSaveHandler->open($savePath, $name);
     }
 
-    /**
-     * @return bool
-     */
-    public function close()
+    public function close(): bool
     {
         return $this->sessionSaveHandler->close();
     }
 
     /**
      * @param string $id
-     * @return string
      */
-    public function read($id)
+    public function read($id): string|false
     {
         // Return the data from the cache
         $data = $this->sessionSaveHandler->read($id);
@@ -56,9 +52,8 @@ class EncryptedSessionSaveHandler implements SaveHandlerInterface
     /**
      * @param string $id
      * @param string $data
-     * @return bool
      */
-    public function write($id, $data)
+    public function write($id, $data): bool
     {
         if (!empty($data)) {
             $data = $this->encryptFilter->filter($data);
@@ -70,9 +65,8 @@ class EncryptedSessionSaveHandler implements SaveHandlerInterface
 
     /**
      * @param string $id
-     * @return bool
      */
-    public function destroy($id)
+    public function destroy($id): bool
     {
         return $this->sessionSaveHandler->destroy($id);
     }
@@ -81,6 +75,7 @@ class EncryptedSessionSaveHandler implements SaveHandlerInterface
      * @param int $maxlifetime
      * @return bool
      */
+    #[ReturnTypeWillChange]
     public function gc($maxlifetime)
     {
         return $this->sessionSaveHandler->gc($maxlifetime);
