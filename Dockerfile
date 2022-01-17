@@ -1,13 +1,19 @@
 FROM composer:2.2.4 as composer
 COPY composer.json composer.json
 COPY composer.lock composer.lock
-RUN composer install --no-interaction --ignore-platform-reqs \
+
+RUN mkdir -p /usr/src/php/ext/apcu \
+  && curl -fsSL https://pecl.php.net/get/apcu | tar xvz -C "/usr/src/php/ext/apcu" --strip 1 \
+  && docker-php-ext-install apcu
+
+RUN composer install --no-interaction \
   && composer dumpautoload -o
 
 FROM php:8.1.1-fpm-alpine as main
 
 RUN apk --no-cache add postgresql-dev fcgi icu-dev ncurses autoconf $PHPIZE_DEPS \
-  && docker-php-ext-install pdo pdo_pgsql opcache intl \
+  && mkdir -p /usr/src/php/ext/apcu && curl -fsSL https://pecl.php.net/get/apcu | tar xvz -C "/usr/src/php/ext/apcu" --strip 1 \
+  && docker-php-ext-install apcu pdo pdo_pgsql opcache intl \
   && docker-php-ext-enable sodium \
   && mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
 
