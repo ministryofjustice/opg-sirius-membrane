@@ -65,7 +65,7 @@ jobs:
 
       - name: Publish Inspec Test Results
         uses: EnricoMi/publish-unit-test-result-action@v1
-        if: always() && ${{ github.actor != 'dependabot[bot]' }}
+        if: ${{ always() && github.actor != 'dependabot[bot]' }}
         with:
           check_name: "Inspec Test Results"
           files: test-output/inspec.xml
@@ -80,7 +80,7 @@ jobs:
 
       - name: Publish Unit Test Results
         uses: EnricoMi/publish-unit-test-result-action@v1
-        if: always() && ${{ github.actor != 'dependabot[bot]' }}
+        if: ${{ always() && github.actor != 'dependabot[bot]' }}
         with:
           check_name: "PHP Unit Test Results"
           files: test-output/unit.xml
@@ -98,7 +98,7 @@ jobs:
 
       - name: Publish Functional Test Results
         uses: EnricoMi/publish-unit-test-result-action@v1
-        if: always() && ${{ github.actor != 'dependabot[bot]' }}
+        if: ${{ always() && github.actor != 'dependabot[bot]' }}
         with:
           check_name: "PHP Functional Test Results"
           files: test-output/functional.xml
