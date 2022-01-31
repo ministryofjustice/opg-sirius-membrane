@@ -8,10 +8,6 @@ on:
     branches:
       - main
   workflow_dispatch:
-  workflow_run:
-    workflows: ["Dependabot PR Check"]
-    types:
-      - completed
 
 defaults:
  run:
@@ -69,7 +65,7 @@ jobs:
 
       - name: Publish Inspec Test Results
         uses: EnricoMi/publish-unit-test-result-action@v1
-        if: always()
+        if: always() && ${{ github.actor != 'dependabot[bot]' }}
         with:
           check_name: "Inspec Test Results"
           files: test-output/inspec.xml
@@ -84,7 +80,7 @@ jobs:
 
       - name: Publish Unit Test Results
         uses: EnricoMi/publish-unit-test-result-action@v1
-        if: always()
+        if: always() && ${{ github.actor != 'dependabot[bot]' }}
         with:
           check_name: "PHP Unit Test Results"
           files: test-output/unit.xml
@@ -102,7 +98,7 @@ jobs:
 
       - name: Publish Functional Test Results
         uses: EnricoMi/publish-unit-test-result-action@v1
-        if: always()
+        if: always() && ${{ github.actor != 'dependabot[bot]' }}
         with:
           check_name: "PHP Functional Test Results"
           files: test-output/functional.xml
@@ -129,6 +125,7 @@ jobs:
 
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
+        if: ${{ github.actor != 'dependabot[bot]' }}
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID_ACTIONS }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY_ACTIONS }}
@@ -140,6 +137,7 @@ jobs:
       - name: ECR Login
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v1
+        if: ${{ github.actor != 'dependabot[bot]' }}
         with:
           registries: 311462405659
 
@@ -147,6 +145,7 @@ jobs:
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           MEMBRANE_ECR_REPOSITORY: sirius/membrane-app
+        if: ${{ github.actor != 'dependabot[bot]' }}
         run: |
           docker tag membrane-app:latest $ECR_REGISTRY/$MEMBRANE_ECR_REPOSITORY:${{ steps.bump_version.outputs.tag }}
           if [ $BRANCH_NAME == "main" ]; then
