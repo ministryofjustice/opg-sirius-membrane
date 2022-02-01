@@ -476,6 +476,11 @@ parameters:
 			path: module/Application/src/Application/Service/UserUpdateService.php
 
 		-
+			message: "#^Method Application\\\\Session\\\\SaveHandler\\\\EncryptedSessionSaveHandler\\:\\:gc\\(\\) should return bool but returns int\\|false\\.$#"
+			count: 1
+			path: module/Application/src/Application/Session/SaveHandler/EncryptedSessionSaveHandler.php
+
+		-
 			message: "#^Method Application\\\\View\\\\Model\\\\XmlModel\\:\\:arrayToXml\\(\\) has no return type specified\\.$#"
 			count: 1
 			path: module/Application/src/Application/View/Model/XmlModel.php
