@@ -5,6 +5,8 @@ use Application\Session\SaveHandler\EncryptedSessionSaveHandler;
 use Application\Model\Entity\UserAccount;
 use Application\Controller;
 use Application\View\Model\XmlModel;
+use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\Mapping\Driver\AnnotationDriver;
 use Laminas\Router\Http;
 use Laminas\ApiTools\ContentNegotiation\JsonModel;
 
@@ -242,8 +244,8 @@ return [
     'doctrine' => [
         'authentication' => [
             'orm_default' => [
-                'object_manager' => 'Doctrine\ORM\EntityManager',
-                'identity_class' => 'Application\Model\Entity\UserAccount',
+                'object_manager' => EntityManager::class,
+                'identity_class' => UserAccount::class,
                 'identity_property' => 'email',
                 'credential_property' => 'password',
                 'credentialCallable' => [UserAccount::class, 'verifyPasswordAndStatus'],
@@ -251,7 +253,7 @@ return [
         ],
         'driver' => [
             __NAMESPACE__ . '_driver' => [
-                'class' => 'Doctrine\ORM\Mapping\Driver\AnnotationDriver',
+                'class' => AnnotationDriver::class,
                 'cache' => 'array',
                 'paths' => [
                     getcwd() . '/module/Application/src/Application/Model/Entity/',
@@ -335,11 +337,9 @@ return [
             // Any Filter implementing EncryptionAlgorithmInterface.
             'adaptor' => 'BlockCipher',
             // Additional configuration required for the Filter.
-            'key' => getenv('OPG_CORE_SESSION_ENCRYPTION_KEY') ?
-                getenv('OPG_CORE_SESSION_ENCRYPTION_KEY') :
+            'key' => getenv('OPG_CORE_SESSION_ENCRYPTION_KEY') ?:
                 'THISISAPLACEHOLDERKEYFORDEVELOPMENTENVIRONMENTSONLY1234567890123',
-            'algorithm' => getenv('OPG_CORE_SESSION_ENCRYPTION_ALGORITHM')
-                ? getenv('OPG_CORE_SESSION_ENCRYPTION_ALGORITHM') :
+            'algorithm' => getenv('OPG_CORE_SESSION_ENCRYPTION_ALGORITHM') ?:
                 'aes',
             'mode' => 'cbc',
         ],
