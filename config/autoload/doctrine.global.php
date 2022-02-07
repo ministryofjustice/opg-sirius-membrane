@@ -1,6 +1,6 @@
 <?php
 
-use Doctrine\DBAL\Driver\PDO\PgSql\Driver;
+use Doctrine\DBAL\Driver\PDO\PgSQL\Driver;
 
 return [
     'doctrine' => [
