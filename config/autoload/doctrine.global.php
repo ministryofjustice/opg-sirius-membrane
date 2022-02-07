@@ -1,4 +1,7 @@
 <?php
+
+use Doctrine\DBAL\Driver\PDO\PgSQL\Driver;
+
 return [
     'doctrine' => [
         'annotations' => [
@@ -8,13 +11,13 @@ return [
         'connection' => [
             // default connection name
             'orm_default' => [
-                'driverClass' => 'Doctrine\DBAL\Driver\PDOPgSql\Driver',
+                'driverClass' => Driver::class,
                 'params' => [
-                    'host' => getenv("OPG_CORE_MEMBRANE_DB_HOST")? getenv("OPG_CORE_MEMBRANE_DB_HOST"): "localhost",
+                    'host' => getenv("OPG_CORE_MEMBRANE_DB_HOST")?: "localhost",
                     'port' => getenv("OPG_CORE_MEMBRANE_DB_PORT")? intval(getenv("OPG_CORE_MEMBRANE_DB_PORT")): 5432,
-                    'user' => getenv("OPG_CORE_MEMBRANE_DB_USER")? getenv("OPG_CORE_MEMBRANE_DB_USER"): "opg",
-                    'password' => getenv("OPG_CORE_MEMBRANE_DB_PASSWORD")? getenv("OPG_CORE_MEMBRANE_DB_PASSWORD"): "opg",
-                    'dbname' => getenv("OPG_CORE_MEMBRANE_DB_NAME")? getenv("OPG_CORE_MEMBRANE_DB_NAME"): "opg_membrane",
+                    'user' => getenv("OPG_CORE_MEMBRANE_DB_USER")?: "opg",
+                    'password' => getenv("OPG_CORE_MEMBRANE_DB_PASSWORD")?: "opg",
+                    'dbname' => getenv("OPG_CORE_MEMBRANE_DB_NAME")?: "opg_membrane",
                 ],
             ],
         ],
