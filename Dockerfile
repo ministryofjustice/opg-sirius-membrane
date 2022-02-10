@@ -19,6 +19,9 @@ COPY docker/memory_limit.ini /usr/local/etc/php/conf.d/memory_limit.ini
 COPY docker/opcache.ini /usr/local/etc/php/conf.d/opcache.ini
 COPY docker/www.conf /usr/local/etc/php-fpm.d/www.conf
 
+RUN mkdir /tmp/config
+RUN chown -R www-data /tmp/config
+
 WORKDIR /var/www/
 RUN chown -R www-data /var/www/
 
