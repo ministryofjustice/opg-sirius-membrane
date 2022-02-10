@@ -41,7 +41,7 @@ return [
         // Whether or not to enable a configuration cache.
         // If enabled, the merged configuration will be cached and used in
         // subsequent requests.
-        'config_cache_enabled' => getenv('OPG_CORE_MEMBRANE_CACHE_CONFIG') ? boolval(getenv('OPG_CORE_MEMBRANE_CACHE_CONFIG')) : false,
+        'config_cache_enabled' => getenv('OPG_CORE_MEMBRANE_CACHE_CONFIG') ? boolval(getenv('OPG_CORE_MEMBRANE_CACHE_CONFIG')) : true,
 
         // The key used to create the configuration cache file name.
         'config_cache_key' => 'application',
@@ -55,6 +55,6 @@ return [
         'module_map_cache_key' => 'application',
 
         // The path in which to cache merged configuration.
-        'cache_dir' => getenv('OPG_CORE_MEMBRANE_CACHE_PATH') ? getenv('OPG_CORE_MEMBRANE_CACHE_PATH') : 'data/cache/config',
+        'cache_dir' => '/tmp/config',
     ],
 ];

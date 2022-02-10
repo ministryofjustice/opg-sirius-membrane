@@ -19,6 +19,15 @@ control 'Docker Config Files' do
   end
 end
 
+control 'Cache Folders' do
+  impact 1
+  title 'Cache Folders'
+  desc 'Config cache folder exists'
+  describe file('/tmp/config') do
+    it { should be_directory }
+  end
+end
+
 control 'PHP Healthcheck' do
   impact 1
   title 'PHP Healthcheck'
