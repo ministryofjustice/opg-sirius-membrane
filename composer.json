@@ -13,10 +13,6 @@
     "repositories": [
         {
             "type": "vcs",
-            "url": "git@github.com:ministryofjustice/doctrine-migration-version-checker.git"
-        },
-        {
-            "type": "vcs",
             "url": "git@github.com:ministryofjustice/jwt-laminas-auth.git"
         }
     ],
@@ -39,7 +35,6 @@
         "laminas/laminas-mvc": "^3.1",
         "laminas/laminas-mvc-i18n": "^1.1",
         "laminas/laminas-session": "^2.9",
-        "ministryofjustice/doctrine-migration-version-checker": "^4.0",
         "ministryofjustice/jwt-laminas-auth": "^4.0",
         "php-http/guzzle6-adapter": "^2.0"
     },
