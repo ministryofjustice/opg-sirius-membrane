@@ -5,7 +5,7 @@ COPY composer.lock composer.lock
 RUN composer install --no-interaction \
   && composer dumpautoload -o
 
-FROM php:8.1.2-fpm-alpine as main
+FROM php:8.1.4-fpm-alpine as main
 
 RUN apk --no-cache add postgresql-dev fcgi icu-dev ncurses autoconf $PHPIZE_DEPS \
   && docker-php-ext-install pdo pdo_pgsql opcache intl \
