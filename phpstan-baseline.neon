@@ -101,11 +101,6 @@ parameters:
 			path: module/Application/src/Application/ContentNegotiation/XmlContentTypeListener.php
 
 		-
-			message: "#^Method Application\\\\Controller\\\\AuthController\\:\\:indexAction\\(\\) return type has no value type specified in iterable type Laminas\\\\View\\\\Model\\\\ViewModel\\.$#"
-			count: 1
-			path: module/Application/src/Application/Controller/AuthController.php
-
-		-
 			message: "#^Method Application\\\\Controller\\\\AuthController\\:\\:indexAction\\(\\) should return Laminas\\\\View\\\\Model\\\\ViewModel but return statement is missing\\.$#"
 			count: 1
 			path: module/Application/src/Application/Controller/AuthController.php
@@ -124,11 +119,6 @@ parameters:
 			message: "#^Method Application\\\\Controller\\\\HealthCheckController\\:\\:migrationVersionAction\\(\\) has no return type specified\\.$#"
 			count: 1
 			path: module/Application/src/Application/Controller/HealthCheckController.php
-
-		-
-			message: "#^Method Application\\\\Controller\\\\NotImplementedController\\:\\:indexAction\\(\\) return type has no value type specified in iterable type Laminas\\\\View\\\\Model\\\\ViewModel\\.$#"
-			count: 1
-			path: module/Application/src/Application/Controller/NotImplementedController.php
 
 		-
 			message: "#^Method Application\\\\Controller\\\\NotImplementedController\\:\\:indexAction\\(\\) should return Laminas\\\\View\\\\Model\\\\ViewModel but returns Laminas\\\\Http\\\\Response\\.$#"
