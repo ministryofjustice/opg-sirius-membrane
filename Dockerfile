@@ -1,4 +1,4 @@
-FROM composer:2.3.2 as composer
+FROM composer:2.3.4 as composer
 COPY composer.json composer.json
 COPY composer.lock composer.lock
 
