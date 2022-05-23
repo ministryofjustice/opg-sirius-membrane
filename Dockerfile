@@ -5,15 +5,15 @@ COPY composer.lock composer.lock
 RUN composer install --no-interaction \
   && composer dumpautoload -o
 
-FROM php:8.1.4-fpm-alpine as main
+FROM php:8.1.6-fpm-alpine as main
 
 RUN apk --no-cache add postgresql-dev fcgi icu-dev ncurses autoconf $PHPIZE_DEPS \
   && docker-php-ext-install pdo pdo_pgsql opcache intl \
   && docker-php-ext-enable sodium \
   && mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
 
-# Remove once base image is updated to include the latest version of curl
-RUN apk upgrade curl
+# Remove once base image is updated to include the latest version
+RUN apk upgrade xz
 
 COPY docker/memory_limit.ini /usr/local/etc/php/conf.d/memory_limit.ini
 COPY docker/opcache.ini /usr/local/etc/php/conf.d/opcache.ini
