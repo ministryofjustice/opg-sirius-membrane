@@ -56,7 +56,7 @@ class MigrationVersionServiceTest extends TestCase
             ->willReturn(new SqlitePlatform());
 
         $this->mockConnection->expects(self::atLeastOnce())
-            ->method('getSchemaManager')
+            ->method('createSchemaManager')
             ->willReturn(new TestableSchemaManager($this->mockConnection, new PostgreSQLPlatform()));
 
         $service = new Version($this->mockConnection, $this->mockConfig);
