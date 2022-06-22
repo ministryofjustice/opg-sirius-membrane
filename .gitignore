@@ -12,3 +12,4 @@ vendor
 venv
 .composer
 phpqa
+.vscode
