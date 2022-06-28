@@ -77,6 +77,13 @@ jobs:
           min-line-coverage: 47
           min-method-coverage: 44
 
+      - name: Run SonarQube
+        uses: sonarsource/sonarqube-scan-action@master
+        if: ${{ github.actor != 'dependabot[bot]' }}
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+
       - name: Functional Test
         run: |
           make functional
