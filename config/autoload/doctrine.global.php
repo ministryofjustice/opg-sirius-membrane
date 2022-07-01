@@ -5,8 +5,8 @@ use Doctrine\DBAL\Driver\PDO\PgSQL\Driver;
 return [
     'doctrine' => [
         'annotations' => [
-            'cache' => getenv("OPG_CORE_MEMRANE_CACHE_DOCTRINE_ANNOTATIONS") ? boolval(getenv("OPG_CORE_MEMRANE_CACHE_DOCTRINE_ANNOTATIONS")) : true,
-            'path' => 'data/cache/annotations',
+            'cache' => getenv("OPG_CORE_MEMBRANE_CACHE_DOCTRINE_ANNOTATIONS") ? boolval(getenv("OPG_CORE_MEMBRANE_CACHE_DOCTRINE_ANNOTATIONS")) : true,
+            'path' => '/tmp/doctrine/cache/annotations',
         ],
         'connection' => [
             // default connection name
