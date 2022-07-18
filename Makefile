@@ -17,8 +17,8 @@ build-coverage:
 	docker-compose build membrane-coverage
 
 scan:
-	trivy --exit-code 0 --severity MEDIUM,HIGH membrane-app:latest
-	trivy --exit-code 1 --severity CRITICAL membrane-app:latest
+	trivy image --exit-code 0 --severity MEDIUM,HIGH membrane-app:latest
+	trivy image --exit-code 1 --severity CRITICAL membrane-app:latest
 
 inspec:
 	docker-compose up -d membrane
