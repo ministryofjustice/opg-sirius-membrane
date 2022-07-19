@@ -15,6 +15,7 @@ RUN apk --no-cache add postgresql-dev fcgi icu-dev ncurses autoconf $PHPIZE_DEPS
 # Remove once base image is updated to include the latest version
 RUN apk update && \
   apk upgrade xz curl libcurl openssl libssl1.1 && \
+  apk upgrade busybox --repository=http://dl-cdn.alpinelinux.org/alpine/edge/main && \
   rm -rf /var/cache/apk/*
 
 COPY docker/memory_limit.ini /usr/local/etc/php/conf.d/memory_limit.ini
