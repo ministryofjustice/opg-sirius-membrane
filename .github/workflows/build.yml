@@ -77,6 +77,12 @@ jobs:
           min-line-coverage: 47
           min-method-coverage: 44
 
+      - name: Repoint unit & coverage results paths for SonarQube
+        if: github.actor != 'dependabot[bot]'
+        run: |
+          sudo sed -i 's/\/var\/www\///g' test-output/clover.xml
+          sudo sed -i 's/\/var\/www\///g' test-output/unit.xml
+
       - name: Run SonarQube
         uses: sonarsource/sonarqube-scan-action@master
         if: ${{ github.actor != 'dependabot[bot]' }}
@@ -106,7 +112,7 @@ jobs:
 
       - name: Bump version
         id: bump_version
-        uses: anothrNick/github-tag-action@1.39.0
+        uses: anothrNick/github-tag-action@1.36.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           INITIAL_VERSION: v0.0.1
