@@ -76,7 +76,7 @@ class ApplicationProxyTest extends TestCase
 
         $this->sendRequest();
 
-        $this->assertEquals($this->copiedRequest->getContent(), 'test content');
+        $this->assertEquals('test content', $this->copiedRequest->getContent());
     }
 
     public function testRequestForwardMethodQueryStringIsHonoured()
@@ -88,7 +88,7 @@ class ApplicationProxyTest extends TestCase
 
         $this->sendRequest();
 
-        $this->assertEquals($this->copiedRequest->getMethod(), 'POST');
+        $this->assertEquals('POST', $this->copiedRequest->getMethod());
     }
 
     public function testCopiedRequestHasSameMethodAsProxiedRequest()
@@ -100,7 +100,7 @@ class ApplicationProxyTest extends TestCase
 
         $this->sendRequest();
 
-        $this->assertEquals($this->copiedRequest->getMethod(), 'POST');
+        $this->assertEquals('POST', $this->copiedRequest->getMethod());
     }
 
     public function testCopiedRequestHasTheCorrectUriToForwardTheRequest()

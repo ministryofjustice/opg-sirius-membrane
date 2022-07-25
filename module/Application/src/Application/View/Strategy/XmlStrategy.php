@@ -51,8 +51,7 @@ class XmlStrategy extends AbstractListenerAggregate
 
     public function injectResponse(ViewEvent $e)
     {
-        $renderer = $e->getRenderer();
-        if ($renderer !== $this->renderer) {
+        if ($e->getRenderer() !== $this->renderer) {
             return;
         }
 

@@ -21,10 +21,10 @@ use Laminas\View\Model\JsonModel;
 class SessionRestController extends AbstractRestfulController
 {
     public function __construct(
-        private AuthenticationServiceConstructor $authenticationServiceConstructor,
-        private LoggerInterface $logger,
-        private SecurityLogger $securityLogger,
-        private UserSessionService $userSessionService,
+        private readonly AuthenticationServiceConstructor $authenticationServiceConstructor,
+        private readonly LoggerInterface $logger,
+        private readonly SecurityLogger $securityLogger,
+        private readonly UserSessionService $userSessionService,
     ) {
     }
 

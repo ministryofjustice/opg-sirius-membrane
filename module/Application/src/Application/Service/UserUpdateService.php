@@ -45,6 +45,8 @@ class UserUpdateService
                     case UserAccount::STATUS_ACTIVE:
                         $this->securityLogger->userActivated($userId);
                         break;
+                    default:
+                        break;
                 }
             }
 

@@ -23,16 +23,12 @@ class XmlContentTypeListener
 
         $parameterData = new ParameterDataContainer();
 
-        $bodyParams = [];
-        switch ($request->getMethod()) {
-            case $request::METHOD_POST:
-            case $request::METHOD_PATCH:
-            case $request::METHOD_PUT:
-                $content = $request->getContent();
-                $bodyParams = $this->extractBodyParametersFromXml($content);
-
-                break;
-        }
+        $bodyParams = match ($request->getMethod()) {
+            $request::METHOD_POST, $request::METHOD_PATCH, $request::METHOD_PUT => $this->extractBodyParametersFromXml(
+                $request->getContent()
+            ),
+            default => [],
+        };
 
         $parameterData->setBodyParams($bodyParams);
         $event->setParam('LaminasContentNegotiationParameterData', $parameterData);
@@ -52,8 +48,6 @@ class XmlContentTypeListener
     protected function extractBodyParametersFromXml($xmlString)
     {
         $xmlObject = simplexml_load_string($xmlString);
-        $array = json_decode(json_encode((array)$xmlObject), true);
-
-        return $array;
+        return json_decode(json_encode((array)$xmlObject), true);
     }
 }
