@@ -3205,16 +3205,16 @@
         },
         {
             "name": "laminas/laminas-hydrator",
-            "version": "4.3.1",
+            "version": "4.3.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laminas/laminas-hydrator.git",
-                "reference": "cc5ea6b42d318dbac872d94e8dca2d3013a37ab5"
+                "reference": "38d29dc88fdb090c85780239e5cdf8c5c4905431"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laminas/laminas-hydrator/zipball/cc5ea6b42d318dbac872d94e8dca2d3013a37ab5",
-                "reference": "cc5ea6b42d318dbac872d94e8dca2d3013a37ab5",
+                "url": "https://api.github.com/repos/laminas/laminas-hydrator/zipball/38d29dc88fdb090c85780239e5cdf8c5c4905431",
+                "reference": "38d29dc88fdb090c85780239e5cdf8c5c4905431",
                 "shasum": ""
             },
             "require": {
@@ -3278,7 +3278,7 @@
                     "type": "community_bridge"
                 }
             ],
-            "time": "2021-09-09T09:55:00+00:00"
+            "time": "2021-12-21T10:06:25+00:00"
         },
         {
             "name": "laminas/laminas-i18n",
@@ -4580,16 +4580,16 @@
         },
         {
             "name": "laminas/laminas-zendframework-bridge",
-            "version": "1.5.0",
+            "version": "1.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laminas/laminas-zendframework-bridge.git",
-                "reference": "7f049390b756d34ba5940a8fb47634fbb51f79ab"
+                "reference": "d74d2da21beae5aceff1e8c07b901066b0e1b719"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laminas/laminas-zendframework-bridge/zipball/7f049390b756d34ba5940a8fb47634fbb51f79ab",
-                "reference": "7f049390b756d34ba5940a8fb47634fbb51f79ab",
+                "url": "https://api.github.com/repos/laminas/laminas-zendframework-bridge/zipball/d74d2da21beae5aceff1e8c07b901066b0e1b719",
+                "reference": "d74d2da21beae5aceff1e8c07b901066b0e1b719",
                 "shasum": ""
             },
             "require": {
@@ -4638,7 +4638,7 @@
                     "type": "community_bridge"
                 }
             ],
-            "time": "2022-02-22T22:17:01+00:00"
+            "time": "2022-07-14T16:30:30+00:00"
         },
         {
             "name": "lcobucci/clock",
