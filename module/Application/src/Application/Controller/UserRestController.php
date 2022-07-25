@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Application\Controller;
 
 use Application\Exception\UserAlreadyExistsException;
@@ -87,7 +85,7 @@ class UserRestController extends AbstractRestfulController
             }
         }
 
-        if ($errors) {
+        if ($errors || !isset($newUser)) {
             $this->getResponse()->setStatusCode(Response::STATUS_CODE_400);
             return new JsonModel([
                 'errors' => $errors,
