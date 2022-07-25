@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Application\Controller;
 
 use Application\Proxy\ApplicationProxy;
@@ -19,24 +21,13 @@ class AuthController extends AbstractActionController
 {
     use BypassMembraneHeader;
 
-    private RequestService $requestService;
-    private AuthenticationServiceConstructor $authenticationService;
-    private ApplicationProxy $applicationProxy;
-    private LoggerInterface $logger;
-    private SecurityLogger $securityLogger;
-
     public function __construct(
-        RequestService $requestService,
-        AuthenticationServiceConstructor $authenticationService,
-        ApplicationProxy $applicationProxy,
-        LoggerInterface $logger,
-        SecurityLogger $securityLogger
+        private readonly RequestService $requestService,
+        private readonly AuthenticationServiceConstructor $authenticationService,
+        private readonly ApplicationProxy $applicationProxy,
+        private readonly LoggerInterface $logger,
+        private readonly SecurityLogger $securityLogger
     ) {
-        $this->requestService = $requestService;
-        $this->authenticationService = $authenticationService;
-        $this->applicationProxy = $applicationProxy;
-        $this->logger = $logger;
-        $this->securityLogger = $securityLogger;
     }
 
     private function getAuthenticationService(): AuthenticationServiceInterface
@@ -72,10 +63,10 @@ class AuthController extends AbstractActionController
             return $response;
         }
 
-        $authenticationService = $this->getAuthenticationService();
+        $authService = $this->getAuthenticationService();
 
-        if ($authenticationService->hasIdentity()) {
-            $userEmail = $authenticationService->getIdentity()->getEmail();
+        if ($authService->hasIdentity()) {
+            $userEmail = $authService->getIdentity()->getEmail();
 
             if (!empty($userEmail)) {
                 $this->requestService->updateHeadersWithUserId($userEmail);
@@ -87,8 +78,8 @@ class AuthController extends AbstractActionController
         } else {
             $this->securityLogger->authenticationFailed();
             $response->setStatusCode(Response::STATUS_CODE_401);
-
-            return $response;
         }
+
+        return $response;
     }
 }

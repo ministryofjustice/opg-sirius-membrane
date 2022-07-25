@@ -8,6 +8,9 @@ use Laminas\Log\Logger;
 
 class SecurityLogger
 {
+    private const SUBCATEGORY_USER_PASSWORD_CHANGE = 'User password change';
+    private const SUBCATEGORY_USER_STATUS_CHANGE = 'User status change';
+
     private Logger $logger;
 
     public function __construct(Logger $logger)
@@ -114,7 +117,7 @@ class SecurityLogger
             'Successful password update via single-use token',
             [
                 'category' => 'Security',
-                'subcategory' => 'User password change',
+                'subcategory' => self::SUBCATEGORY_USER_PASSWORD_CHANGE,
                 'userId' => $userId,
             ]
         );
@@ -127,7 +130,7 @@ class SecurityLogger
     {
         $params = [
             'category' => 'Security',
-            'subcategory' => 'User password change',
+            'subcategory' => self::SUBCATEGORY_USER_PASSWORD_CHANGE,
             'userId' => $userId,
         ];
 
@@ -147,7 +150,7 @@ class SecurityLogger
             'Successful password update via supplied password',
             [
                 'category' => 'Security',
-                'subcategory' => 'User password change',
+                'subcategory' => self::SUBCATEGORY_USER_PASSWORD_CHANGE,
                 'userId' => $userId,
             ]
         );
@@ -163,7 +166,7 @@ class SecurityLogger
             'Unsuccessful password update via supplied password',
             [
                 'category' => 'Security',
-                'subcategory' => 'User password change',
+                'subcategory' => self::SUBCATEGORY_USER_PASSWORD_CHANGE,
                 'userId' => $userId,
                 'error' => json_encode($errors),
             ]
@@ -179,7 +182,7 @@ class SecurityLogger
             'User account locked',
             [
                 'category' => 'Security',
-                'subcategory' => 'User status change',
+                'subcategory' => self::SUBCATEGORY_USER_STATUS_CHANGE,
                 'userId' => $userId,
             ]
         );
@@ -191,7 +194,7 @@ class SecurityLogger
             'User account automatically locked',
             [
                 'category' => 'Security',
-                'subcategory' => 'User status change',
+                'subcategory' => self::SUBCATEGORY_USER_STATUS_CHANGE,
                 'userId' => $userId,
             ]
         );
@@ -206,7 +209,7 @@ class SecurityLogger
             'User account suspended',
             [
                 'category' => 'Security',
-                'subcategory' => 'User status change',
+                'subcategory' => self::SUBCATEGORY_USER_STATUS_CHANGE,
                 'userId' => $userId,
             ]
         );
@@ -221,7 +224,7 @@ class SecurityLogger
             'User account activated',
             [
                 'category' => 'Security',
-                'subcategory' => 'User status change',
+                'subcategory' => self::SUBCATEGORY_USER_STATUS_CHANGE,
                 'userId' => $userId,
             ]
         );
