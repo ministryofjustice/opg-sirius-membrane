@@ -26,7 +26,7 @@
         "doctrine/dbal": "^3.3",
         "doctrine/doctrine-orm-module": "^5.0",
         "doctrine/migrations": "^3.3.2",
-        "doctrine/persistence": "^2.2.2",
+        "doctrine/persistence": "^3.0.2",
         "laminas-api-tools/api-tools-content-negotiation": "^1.4",
         "laminas/laminas-cli": "^1.2",
         "laminas/laminas-crypt": "^3.3",
