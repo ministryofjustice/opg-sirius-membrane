@@ -288,7 +288,7 @@ class UserAccount
      * @param \DateInterval $tokenLifespan
      * @return bool
      */
-    public function validateOneTimePasswordSetToken($token, \DateInterval $tokenLifespan)
+    public function validateOneTimePasswordSetToken($token, \DateInterval $tokenLifespan): bool
     {
         $now = new \DateTime('now', new \DateTimeZone('UTC'));
 
@@ -300,13 +300,9 @@ class UserAccount
         $oneTimePasswordSetTokenGeneratedTimeClone = clone $this->oneTimePasswordSetTokenGeneratedTime;
         $expiryTime = $oneTimePasswordSetTokenGeneratedTimeClone->add($tokenLifespan);
 
-        if ($token === $this->oneTimePasswordSetToken) {
-            if ($now >= $this->oneTimePasswordSetTokenGeneratedTime && $now <= $expiryTime) {
-                return true;
-            }
-        }
-
-        return false;
+        return $token === $this->oneTimePasswordSetToken
+            && $now >= $this->oneTimePasswordSetTokenGeneratedTime
+            && $now <= $expiryTime;
     }
 
     /**

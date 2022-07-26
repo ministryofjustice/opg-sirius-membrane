@@ -25,27 +25,14 @@ class UserRestController extends AbstractRestfulController
 {
     use BypassMembraneHeader;
 
-    protected AuthenticationServiceConstructor $authenticationServiceConstructor;
-    protected UserService $userService;
-    protected UserCreationService $userCreationService;
-    protected UserUpdateService $userUpdateService;
-    private LoggerInterface $logger;
-    private SecurityLogger $securityLogger;
-
     public function __construct(
-        AuthenticationServiceConstructor $authenticationServiceConstructor,
-        UserService $userService,
-        UserCreationService $userCreationService,
-        UserUpdateService $userUpdateService,
-        LoggerInterface $logger,
-        SecurityLogger $securityLogger
+        private readonly AuthenticationServiceConstructor $authenticationServiceConstructor,
+        private readonly UserService $userService,
+        private readonly UserCreationService $userCreationService,
+        private readonly UserUpdateService $userUpdateService,
+        private readonly LoggerInterface $logger,
+        private readonly SecurityLogger $securityLogger
     ) {
-        $this->authenticationServiceConstructor = $authenticationServiceConstructor;
-        $this->userService = $userService;
-        $this->userCreationService = $userCreationService;
-        $this->userUpdateService = $userUpdateService;
-        $this->logger = $logger;
-        $this->securityLogger = $securityLogger;
     }
 
     public function getList()
@@ -65,67 +52,51 @@ class UserRestController extends AbstractRestfulController
     public function create($data)
     {
         // Check that user is logged in.
-        if ($this->getAuthenticationService()->hasIdentity()) {
-            if ($this->getAuthenticationService()->getIdentity()->isAdmin()) {
-                // Verify that email address meets email address standards.
-                if (!filter_var($data['user']['email'], FILTER_VALIDATE_EMAIL)) {
-                    $this->getResponse()->setStatusCode(Response::STATUS_CODE_400);
+        if (!$this->getAuthenticationService()->hasIdentity() || !$this->getAuthenticationService()->getIdentity()->isAdmin()) {
+            // User is not authorised to create new users.
+            $this->getResponse()->setStatusCode(Response::STATUS_CODE_402);
 
-                    return new JsonModel([
-                        'errors' => ['email' => 'Invalid email address'],
-                    ]);
-                }
+            return new JsonModel([
+                'error' => 'Invalid credentials',
+            ]);
+        }
 
-                // Verify that password meets OPG password complexity requirements, if supplied.
-                if (!empty($data['user']['password'])) {
-                    if (!empty($this->userService->verifyPasswordComplexity($data['user']['password']))) {
-                        $this->getResponse()->setStatusCode(Response::STATUS_CODE_400);
+        $errors = [];
 
-                        return new JsonModel([
-                            'errors' => ['password' => 'Password does not meet complexity requirement'],
-                        ]);
-                    }
-                }
-
-                // Verify that roles array is indeed an array.
-                if (!is_array($data['user']['roles'])) {
-                    $this->getResponse()->setStatusCode(Response::STATUS_CODE_400);
-
-                    return new JsonModel([
-                        'errors' => ['roles' => 'Roles must be specified as an array'],
-                    ]);
-                }
-
-                // Attempt to persist new user.
-                try {
-                    $newUser = $this->userCreationService->createUser(
-                        $data['user']['email'],
-                        $data['user']['password'],
-                        in_array('System Admin', $data['user']['roles'], true)
-                    );
-                } catch (UserAlreadyExistsException $exception) {
-                    $this->getResponse()->setStatusCode(Response::STATUS_CODE_400);
-
-                    return new JsonModel([
-                        'errors' => ['email' => $exception->getMessage()],
-                    ]);
-                }
-
-                // New user has been successfully persisted.
-                $this->getResponse()->setStatusCode(Response::STATUS_CODE_201);
-
-                return new JsonModel([
-                    'email' => $newUser->getEmail(),
-                ]);
+        if (!filter_var($data['user']['email'], FILTER_VALIDATE_EMAIL)) {
+            // Verify that email address meets email address standards.
+            $errors['email'] = 'Invalid email address';
+        } elseif (!empty($data['user']['password']) && !empty($this->userService->verifyPasswordComplexity($data['user']['password']))) {
+            // Verify that password meets OPG password complexity requirements, if supplied.
+            $errors['password'] = 'Password does not meet complexity requirement';
+        } elseif (!is_array($data['user']['roles'])) {
+            // Verify that roles array is indeed an array.
+            $errors['roles'] = 'Roles must be specified as an array';
+        } else {
+            // Attempt to persist new user.
+            try {
+                $newUser = $this->userCreationService->createUser(
+                    $data['user']['email'],
+                    $data['user']['password'],
+                    in_array('System Admin', $data['user']['roles'], true)
+                );
+            } catch (UserAlreadyExistsException $exception) {
+                $errors['email'] = $exception->getMessage();
             }
         }
 
-        // User is not authorised to create new users.
-        $this->getResponse()->setStatusCode(Response::STATUS_CODE_402);
-
-        return new JsonModel([
-            'error' => 'Invalid credentials',
-        ]);
+        if ($errors || !isset($newUser)) {
+            $this->getResponse()->setStatusCode(Response::STATUS_CODE_400);
+            return new JsonModel([
+                'errors' => $errors,
+            ]);
+        } else {
+            // New user has been successfully persisted.
+            $this->getResponse()->setStatusCode(Response::STATUS_CODE_201);
+            return new JsonModel([
+                'email' => $newUser->getEmail(),
+            ]);
+        }
     }
 
     public function update($id, $data)
@@ -163,7 +134,7 @@ class UserRestController extends AbstractRestfulController
     public function patch($id, $data)
     {
         // Scenario 1: Setting own password via a single-use token.
-        $oneTimePasswordSetTokenHeader = $this->getRequest()->getHeaders('Sirius-One-Time-Password-Set-Token', false);
+        $oneTimePasswordSetTokenHeader = $this->getRequest()->getHeaders('Sirius-One-Time-Password-Set-Token');
 
         if ($oneTimePasswordSetTokenHeader instanceof HeaderInterface) {
             $oneTimePasswordSetToken = $oneTimePasswordSetTokenHeader->getFieldValue();

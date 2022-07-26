@@ -101,11 +101,6 @@ parameters:
 			path: module/Application/src/Application/ContentNegotiation/XmlContentTypeListener.php
 
 		-
-			message: "#^Method Application\\\\Controller\\\\AuthController\\:\\:indexAction\\(\\) should return Laminas\\\\View\\\\Model\\\\ViewModel but return statement is missing\\.$#"
-			count: 1
-			path: module/Application/src/Application/Controller/AuthController.php
-
-		-
 			message: "#^Method Application\\\\Controller\\\\AuthController\\:\\:indexAction\\(\\) should return Laminas\\\\View\\\\Model\\\\ViewModel but returns Laminas\\\\Http\\\\Response\\.$#"
 			count: 3
 			path: module/Application/src/Application/Controller/AuthController.php
@@ -529,4 +524,3 @@ parameters:
 			message: "#^Property Application\\\\View\\\\Strategy\\\\XmlStrategy\\:\\:\\$renderer has no type specified\\.$#"
 			count: 1
 			path: module/Application/src/Application/View/Strategy/XmlStrategy.php
-

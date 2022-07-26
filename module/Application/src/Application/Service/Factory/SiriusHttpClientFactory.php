@@ -24,24 +24,21 @@ class SiriusHttpClientFactory implements FactoryInterface
     {
         /** @var Logger $logger */
         $logger = $container->get(Logger::class);
-
         $config = $container->get('Config');
 
-        $uri = isset($config['sirius_http_client']['uri']) ? $config['sirius_http_client']['uri'] : null;
-        $options = isset($config['sirius_http_client']['options']) ? $config['sirius_http_client']['options'] : [];
+        $uri = $config['sirius_http_client']['uri'] ?? null;
+        $clientOptions = $config['sirius_http_client']['options'] ?? [];
 
         $request = $this->generateRequest($container);
 
         // Set up client with new adapter and request to backend
-        $client = new SiriusHttpClient($logger, $uri, $options);
+        $client = new SiriusHttpClient($logger, $uri, $clientOptions);
 
         if (!empty($request)) {
             $client->setRequest($request);
         }
 
-        $client = $this->setupClientAuth($client, $config);
-
-        return $client;
+        return $this->setupClientAuth($client, $config);
     }
 
     /**

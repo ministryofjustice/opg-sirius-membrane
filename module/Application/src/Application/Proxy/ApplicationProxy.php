@@ -55,9 +55,7 @@ class ApplicationProxy
     public function send(Request $request)
     {
         $forwardRequest = $this->createForwardRequestFromRequest($request);
-        $response = $this->httpClient->send($forwardRequest);
-
-        return $response;
+        return $this->httpClient->send($forwardRequest);
     }
 
     protected function createForwardRequestFromRequest($request)
@@ -84,9 +82,7 @@ class ApplicationProxy
 
     protected function buildForwardUri($request)
     {
-        $uri = $this->config['baseUri'] . str_replace('/auth', '', $request->getUri()->getPath() ?? '');
-
-        return $uri;
+        return $this->config['baseUri'] . str_replace('/auth', '', $request->getUri()->getPath() ?? '');
     }
 
     protected function copyRequestParameters($forwardRequest, $request)
