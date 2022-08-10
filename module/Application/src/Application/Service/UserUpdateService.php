@@ -58,6 +58,10 @@ class UserUpdateService
             }
         }
 
+        if (isset($newValues['email'])) {
+            $userAccountEntity->setEmail($newValues['email']);
+        }
+
         $userAccountEntity->setStatus($newValues['status']);
 
         $userAccountEntity->setAdmin(
