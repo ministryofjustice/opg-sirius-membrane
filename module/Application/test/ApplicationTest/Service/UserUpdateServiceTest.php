@@ -205,6 +205,37 @@ class UserUpdateServiceTest extends TestCase
         $this->assertEquals($expectedReturn, $updateUserReturn);
     }
 
+    public function testUserUpdateChangeEmail()
+    {
+        $this->mockEntityManager->expects($this->once())
+            ->method('flush');
+
+        $this->mockEntityManager->expects($this->once())
+            ->method('getRepository')
+            ->will($this->returnValue($this->mockUserAccountRepository));
+
+        $user = new UserAccount();
+        $this->mockUserAccountRepository->expects($this->once())
+            ->method('find')
+            ->with(43)
+            ->willReturn($user);
+
+        $updateUserReturn = $this->userUpdateService->updateUser(
+            43,
+            [
+                'status' => UserAccount::STATUS_ACTIVE,
+                'roles' => ['OPG User', 'System Admin'],
+                'email' => 'newemail@opgtest',
+            ]
+        );
+
+        $this->assertEquals('newemail@opgtest', $user->getEmail());
+        $this->assertEquals([
+            'status' => Response::STATUS_CODE_200,
+            'body' => [],
+        ], $updateUserReturn);
+    }
+
     public function testUserDelete()
     {
         $this->mockEntityManager->expects($this->once())
