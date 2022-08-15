@@ -225,7 +225,7 @@ class UserUpdateServiceTest extends TestCase
             [
                 'status' => UserAccount::STATUS_ACTIVE,
                 'roles' => ['OPG User', 'System Admin'],
-                'email' => 'newemail@opgtest',
+                'email' => 'NewEmail@opgtest',
             ]
         );
 
