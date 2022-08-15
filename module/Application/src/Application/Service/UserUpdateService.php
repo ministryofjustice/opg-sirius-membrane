@@ -59,7 +59,7 @@ class UserUpdateService
         }
 
         if (isset($newValues['email'])) {
-            $userAccountEntity->setEmail($newValues['email']);
+            $userAccountEntity->setEmail(strtolower($newValues['email']));
         }
 
         $userAccountEntity->setStatus($newValues['status']);
