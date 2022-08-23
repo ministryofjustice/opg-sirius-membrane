@@ -69,3 +69,5 @@ Investigations,User1,investigations@opgtest.com, "OPG User, Case Manager", Passw
 Complaints,User1,complaints@opgtest.com, "OPG User, Case Manager", Password1, 12345678, "Complaints - (Supervision)"
 CardPayment,User,card.payment.user@opgtest.com, "OPG User, Card Payment User", Password1, 12345678, "Card Payment Team"
 FileReturns,User,file.returns.user@opgtest.com, "OPG User, POA User", Password1, 12345678, "File Returns Team"
+ReducedFees,User,reduced.fees.user@opgtest.com, "OPG User, POA User", Password1, 12345678, "Reduced Fees Team"
+OnlinePayment,User,online.payment.user@opgtest.com, "OPG User, POA User", Password1, 12345678, "Online Payment Team"
