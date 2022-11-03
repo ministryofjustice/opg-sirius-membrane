@@ -72,6 +72,7 @@ jobs:
 
       - name: Coverage Report
         uses: lucassabreu/comment-coverage-clover@main
+        if: ${{ github.actor != 'dependabot[bot]' }}
         with:
           file: "test-output/clover.xml"
           min-line-coverage: 47
@@ -143,7 +144,7 @@ jobs:
 
       - name: Upload Trivy scan results to GitHub Security tab
         uses: github/codeql-action/upload-sarif@v1
-        if: always()
+        if: ${{ github.actor != 'dependabot[bot]' }}
         with:
           sarif_file: 'trivy-results.sarif'
 
