@@ -162,7 +162,7 @@ class UserService extends AbstractService
         return $formattedUserArray;
     }
 
-    public function retrieveUserAccountEntity($id)
+    public function retrieveUserAccountEntity(int $id)
     {
         $userAccountRepository = $this->entityManager->getRepository('Application\Model\Entity\UserAccount');
 

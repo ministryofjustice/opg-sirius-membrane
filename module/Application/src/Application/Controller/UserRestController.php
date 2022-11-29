@@ -49,7 +49,7 @@ class UserRestController extends AbstractRestfulController
         return new JsonModel($userAccountArray);
     }
 
-    public function create($data)
+    public function create(array $data)
     {
         // Check that user is logged in.
         if (!$this->getAuthenticationService()->hasIdentity() || !$this->getAuthenticationService()->getIdentity()->isAdmin()) {
@@ -99,7 +99,7 @@ class UserRestController extends AbstractRestfulController
         }
     }
 
-    public function update($id, $data)
+    public function update(int $id, array $data)
     {
         if ($this->getAuthenticationService()->hasIdentity()) {
             $userAccount = $this->getAuthenticationService()->getIdentity();
@@ -241,7 +241,7 @@ class UserRestController extends AbstractRestfulController
         return new JsonModel($updateErrors['errors']);
     }
 
-    public function delete($id)
+    public function delete(int $id)
     {
         if ($this->getAuthenticationService()->hasIdentity()) {
             $userAccount = $this->getAuthenticationService()->getIdentity();

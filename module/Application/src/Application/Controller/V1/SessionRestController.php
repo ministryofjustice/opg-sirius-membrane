@@ -28,7 +28,7 @@ class SessionRestController extends AbstractRestfulController
     ) {
     }
 
-    public function create($data)
+    public function create(mixed $data)
     {
         // Retrieve externally to support content negotiation.
         /** @var array $user */
@@ -95,7 +95,7 @@ class SessionRestController extends AbstractRestfulController
         return new JsonModel($sessionOpenResponse['body']);
     }
 
-    public function delete($id)
+    public function delete(string $id)
     {
         /** @var Response $response */
         $response = $this->getResponse();
