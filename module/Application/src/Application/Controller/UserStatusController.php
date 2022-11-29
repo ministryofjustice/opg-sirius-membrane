@@ -19,7 +19,7 @@ class UserStatusController extends AbstractRestfulController
         $this->userService = $userService;
     }
 
-    public function get(int $id)
+    public function get(mixed $id)
     {
         $userDetails = $this->userService->retrieveUserAccountEntity($id);
 

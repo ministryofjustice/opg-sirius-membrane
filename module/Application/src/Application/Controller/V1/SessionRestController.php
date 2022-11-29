@@ -95,7 +95,7 @@ class SessionRestController extends AbstractRestfulController
         return new JsonModel($sessionOpenResponse['body']);
     }
 
-    public function delete(string $id)
+    public function delete(mixed $id)
     {
         /** @var Response $response */
         $response = $this->getResponse();

@@ -381,11 +381,6 @@ parameters:
 			path: module/Application/src/Application/Service/UserService.php
 
 		-
-			message: "#^Method Application\\\\Service\\\\UserService\\:\\:retrieveUserAccountEntity\\(\\) has parameter \\$id with no type specified\\.$#"
-			count: 1
-			path: module/Application/src/Application/Service/UserService.php
-
-		-
 			message: "#^Method Application\\\\Service\\\\UserService\\:\\:setPasswordForUserViaExistingPassword\\(\\) has no return type specified\\.$#"
 			count: 1
 			path: module/Application/src/Application/Service/UserService.php
@@ -442,16 +437,6 @@ parameters:
 
 		-
 			message: "#^Method Application\\\\Service\\\\UserUpdateService\\:\\:updateUser\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: module/Application/src/Application/Service/UserUpdateService.php
-
-		-
-			message: "#^Method Application\\\\Service\\\\UserUpdateService\\:\\:updateUser\\(\\) has parameter \\$newValues with no type specified\\.$#"
-			count: 1
-			path: module/Application/src/Application/Service/UserUpdateService.php
-
-		-
-			message: "#^Method Application\\\\Service\\\\UserUpdateService\\:\\:updateUser\\(\\) has parameter \\$userId with no type specified\\.$#"
 			count: 1
 			path: module/Application/src/Application/Service/UserUpdateService.php
 

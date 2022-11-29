@@ -61,7 +61,7 @@ class SessionRestController extends AbstractRestfulController
         return $sessionOpenResponse['body'];
     }
 
-    public function delete(string $id)
+    public function delete(mixed $id)
     {
         /** @var Response $response */
         $response = $this->getResponse();

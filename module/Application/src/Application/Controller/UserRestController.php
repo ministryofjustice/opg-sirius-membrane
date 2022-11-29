@@ -49,7 +49,10 @@ class UserRestController extends AbstractRestfulController
         return new JsonModel($userAccountArray);
     }
 
-    public function create(array $data)
+    /**
+     * @param mixed[] $data
+     */
+    public function create(mixed $data)
     {
         // Check that user is logged in.
         if (!$this->getAuthenticationService()->hasIdentity() || !$this->getAuthenticationService()->getIdentity()->isAdmin()) {
@@ -99,7 +102,10 @@ class UserRestController extends AbstractRestfulController
         }
     }
 
-    public function update(int $id, array $data)
+    /**
+     * @param mixed[] $data
+     */
+    public function update(mixed $id, mixed $data)
     {
         if ($this->getAuthenticationService()->hasIdentity()) {
             $userAccount = $this->getAuthenticationService()->getIdentity();
@@ -241,7 +247,7 @@ class UserRestController extends AbstractRestfulController
         return new JsonModel($updateErrors['errors']);
     }
 
-    public function delete(int $id)
+    public function delete(mixed $id)
     {
         if ($this->getAuthenticationService()->hasIdentity()) {
             $userAccount = $this->getAuthenticationService()->getIdentity();
