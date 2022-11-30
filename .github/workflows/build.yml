@@ -50,7 +50,7 @@ jobs:
 
       - name: Publish Inspec Test Results
         uses: EnricoMi/publish-unit-test-result-action@v1
-        if: ${{ always() && github.actor != 'dependabot[bot]' }}
+        if: ${{ always() }}
         with:
           check_name: "Inspec Test Results"
           files: test-output/inspec.xml
@@ -65,28 +65,25 @@ jobs:
 
       - name: Publish Unit Test Results
         uses: EnricoMi/publish-unit-test-result-action@v1
-        if: ${{ always() && github.actor != 'dependabot[bot]' }}
+        if: ${{ always() }}
         with:
           check_name: "PHP Unit Test Results"
           files: test-output/unit.xml
 
       - name: Coverage Report
         uses: lucassabreu/comment-coverage-clover@main
-        if: ${{ github.actor != 'dependabot[bot]' }}
         with:
           file: "test-output/clover.xml"
           min-line-coverage: 47
           min-method-coverage: 44
 
       - name: Repoint unit & coverage results paths for SonarQube
-        if: github.actor != 'dependabot[bot]'
         run: |
           sudo sed -i 's/\/var\/www\///g' test-output/clover.xml
           sudo sed -i 's/\/var\/www\///g' test-output/unit.xml
 
       - name: Run SonarQube
         uses: sonarsource/sonarqube-scan-action@master
-        if: ${{ github.actor != 'dependabot[bot]' }}
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
@@ -97,7 +94,7 @@ jobs:
 
       - name: Publish Functional Test Results
         uses: EnricoMi/publish-unit-test-result-action@v1
-        if: ${{ always() && github.actor != 'dependabot[bot]' }}
+        if: ${{ always() }}
         with:
           check_name: "PHP Functional Test Results"
           files: test-output/functional.xml
@@ -107,21 +104,21 @@ jobs:
           if [ "${{ github.head_ref }}" == "" ]; then
             echo BRANCH_NAME=main >> $GITHUB_ENV
           else
-            echo BRANCH_NAME=${{ github.head_ref }} >> $GITHUB_ENV
+            echo BRANCH_NAME=$(echo ${{ github.head_ref }} | sed 's/\//-/g') >> $GITHUB_ENV
           fi
         id: extract_branch
 
       - name: Bump version
         id: bump_version
-        uses: anothrNick/github-tag-action@1.36.0
+        uses: anothrNick/github-tag-action@1.52.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           INITIAL_VERSION: v0.0.1
           DEFAULT_BUMP: minor
+          PRERELEASE: true
           PRERELEASE_SUFFIX: ${{ env.BRANCH_NAME }}
           RELEASE_BRANCHES: main
           WITH_V: true
-          DRY_RUN: ${{ github.actor == 'dependabot[bot]' }}
 
       - name: Tag Container
         env:
@@ -144,13 +141,11 @@ jobs:
 
       - name: Upload Trivy scan results to GitHub Security tab
         uses: github/codeql-action/upload-sarif@v1
-        if: ${{ github.actor != 'dependabot[bot]' }}
         with:
           sarif_file: 'trivy-results.sarif'
 
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
-        if: ${{ github.actor != 'dependabot[bot]' }}
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID_ACTIONS }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY_ACTIONS }}
@@ -162,7 +157,6 @@ jobs:
       - name: ECR Login
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v1
-        if: ${{ github.actor != 'dependabot[bot]' }}
         with:
           registries: 311462405659
 
@@ -170,7 +164,6 @@ jobs:
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           MEMBRANE_ECR_REPOSITORY: sirius/membrane-app
-        if: ${{ github.actor != 'dependabot[bot]' }}
         run: |
           docker tag membrane-app:latest $ECR_REGISTRY/$MEMBRANE_ECR_REPOSITORY:${{ steps.bump_version.outputs.tag }}
           if [ $BRANCH_NAME == "main" ]; then
