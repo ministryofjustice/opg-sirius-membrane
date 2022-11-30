@@ -35,7 +35,7 @@ class UserResendActivationEmailController extends AbstractRestfulController
         $this->userCreationService = $userCreationService;
     }
 
-    public function create($data)
+    public function create(mixed $data)
     {
         $userId = $this->params()->fromRoute('id');
         $authenticationService = $this->getAuthenticationService();
