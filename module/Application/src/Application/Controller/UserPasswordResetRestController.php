@@ -26,7 +26,7 @@ class UserPasswordResetRestController extends AbstractRestfulController
         $this->securityLogger = $securityLogger;
     }
 
-    public function create($data)
+    public function create(mixed $data)
     {
         $userId = $this->params()->fromRoute('id');
         $passwordResetErrors = $this->userPasswordResetService->sendPasswordResetViaEmail($userId);
