@@ -19,7 +19,10 @@ class UserUpdateService
         $this->securityLogger = $securityLogger;
     }
 
-    public function updateUser($userId, $newValues)
+    /**
+     * @param array<mixed> $newValues
+     */
+    public function updateUser(int $userId, array $newValues)
     {
         $userAccountRepository = $this->entityManager->getRepository('Application\Model\Entity\UserAccount');
 
