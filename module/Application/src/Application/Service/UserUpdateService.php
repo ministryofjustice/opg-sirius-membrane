@@ -21,8 +21,9 @@ class UserUpdateService
 
     /**
      * @param array<mixed> $newValues
+     * @param int $userId
      */
-    public function updateUser(int $userId, array $newValues)
+    public function updateUser($userId, $newValues)
     {
         $userAccountRepository = $this->entityManager->getRepository('Application\Model\Entity\UserAccount');
 
