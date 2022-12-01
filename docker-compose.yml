@@ -12,7 +12,7 @@ services:
     env_file: [./docker-compose.env]
 
   postgres:
-    image: postgres:10.14
+    image: postgres:15.1
     environment:
       POSTGRES_USER: membrane
       POSTGRES_PASSWORD: membrane
