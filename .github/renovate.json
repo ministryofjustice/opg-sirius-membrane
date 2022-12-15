@@ -14,6 +14,22 @@
     },
     "packageRules": [
         {
+            "description": [
+                "Docker Minor Dependency Exclusions",
+                "PHP - Do not update to php 8.2"
+            ],
+            "matchUpdateTypes": [
+                "minor"
+            ],
+            "matchDatasources": [
+                "dockerfile"
+            ],
+            "matchPackageNames": [
+                "php"
+            ],
+            "enabled": false
+        },
+        {
             "automerge": true,
             "groupName": "Patch & Minor Updates",
             "groupSlug": "all-minor-patch-updates",
