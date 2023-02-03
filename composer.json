@@ -42,7 +42,7 @@
         "johnkary/phpunit-speedtrap": "~4.0",
         "laminas/laminas-test": "^4.0",
         "phpstan/phpstan": "^1.2",
-        "phpunit/phpunit": "^9.5",
+        "phpunit/phpunit": "^10.0",
         "roave/security-advisories": "dev-master"
     },
     "autoload": {
